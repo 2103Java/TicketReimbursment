@@ -9,13 +9,19 @@ public class Employee {
 	private String firstName;
 	private String username;
 	private String pass;
+	private CATEGORY employment;
 	private List<Ticket> myTickets = new ArrayList<Ticket>();
+	
+	enum CATEGORY{
+		EMPLOYEE, FINANCEMANAGER
+	}
 	
 	public Employee(int employeeID, String firstName, String username, String pass) {
 		this.employeeID = employeeID;
 		this.firstName = firstName;
 		this.username = username;
-		this.setPass(pass);
+		this.pass = pass;
+		employment = CATEGORY.EMPLOYEE;
 	}
 
 	public List<Ticket> getMyTickets() {
@@ -44,6 +50,10 @@ public class Employee {
 
 	public int getEmployeeID() {
 		return employeeID;
+	}
+	
+	public void setEmploymentStatus(CATEGORY type) {
+		this.employment = type;
 	}
 	
 	
