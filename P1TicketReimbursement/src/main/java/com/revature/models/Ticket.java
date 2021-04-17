@@ -1,23 +1,27 @@
 package com.revature.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Ticket {
 	
 	enum TYPE{
 		LODGING, TRAVEL, FOOD, OTHER
 	}
+	enum APPROVAL{
+		REJECTED, PENDING, APPROVED
+	}
 	
 	private TYPE type;
 	private double amount;
-	private boolean approval;
+	private APPROVAL approval;
 	private int employeeID;
 	private long stamp;
 	static Timestamp ts;
 	private int ticketID;
 	
 	
-	public Ticket(TYPE type, double amount, boolean approval, int employeeID, int ticketID) {
+	public Ticket(TYPE type, double amount, APPROVAL approval, int employeeID, int ticketID) {
 		this.type = type;
 		this.setAmount(amount);
 		this.setApproval(approval);
@@ -34,12 +38,12 @@ public class Ticket {
 		return employeeID;
 	}
 
-	public boolean getApproval() {
+	public APPROVAL getApproval() {
 		return approval;
 	}
 
-	public void setApproval(boolean approval) {
-		this.approval = approval;
+	public void setApproval(APPROVAL approval2) {
+		this.approval = approval2;
 	}
 
 	public double getAmount() {
