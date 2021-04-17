@@ -15,8 +15,7 @@ public class RequestHelper  {
 	
 	
 	
-	public void process(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+	public void process(HttpServletRequest req, HttpServletResponse resp) { //CHECKING THE END POINT FIRST, THEN THE METHOD
 		
 		String endPoint = req.getRequestURI();
 		String method = req.getMethod();
@@ -24,13 +23,13 @@ public class RequestHelper  {
 		switch(endPoint)
 		{
 		
-		case"Ticket":
+		case"Ticket"://END POINT IS TICKET - LOOKING FOR A SPECIFIC TICKET IN THIS INSTANCE
 			
 			
 			switch(method)
 			{
-				case "GET":
-				tcon.getTicket(req,resp);
+				case "GET": 
+				tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
 				
 				
 				default:

@@ -54,7 +54,7 @@ public class TicketDaoImpl implements TicketDao {
 	}
 
 	@Override
-	public Ticket retrieveTicketByID(int id, Connection conn) {
+	public Ticket retrieveTicketByID(int id, Connection conn) {  // CONTACTING OUR SQL DATABASE AND SELECTING INFORMATION BASED ON TICKET_ID
 		// TODO Auto-generated method stub
 		
 		// TODO Auto-generated method stub
@@ -77,7 +77,7 @@ public class TicketDaoImpl implements TicketDao {
 					{
 						
 						
-							ticket = new Ticket
+							ticket = new Ticket // THIS NEEDS TO CREATE AN ACTUAL TICKET, FOR NOW THEY ARE ALL JUST NULL VALUES
 								(
 									null, 
 									id, 
@@ -100,7 +100,7 @@ public class TicketDaoImpl implements TicketDao {
 				}
 				
 	
-				return ticket;
+				return ticket; // WE SHOULD BE ABLE TO GET THIS TICKET FROM POSTMAN NOW
 		
 		
 	}

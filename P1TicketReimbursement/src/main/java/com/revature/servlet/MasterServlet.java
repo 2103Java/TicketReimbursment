@@ -30,7 +30,7 @@ public class MasterServlet extends HttpServlet {
         request = (HttpServletRequest) req;
         response = (HttpServletResponse) resp;
        
-		rh.process(request,response);
+		rh.process(request,response); //REQUEST COMES IN, NOT EXACTLY SURE WHY WE DO THIS PART ABOVE, BUT BEN DID IT SO HERE WE GO
 
 		
 	}

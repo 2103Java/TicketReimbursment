@@ -24,14 +24,14 @@ public class TicketController {
 		Ticket t = null;
 				
 		
-		resp.setContentType("json/application");
+		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
 		
-		int id = Integer.parseInt(req.getParameter("ticketID"));
-		t = tService.getTicket(id);
+		int id = Integer.parseInt(req.getParameter("ticketID")); // GETTING OUR TICKET ID
+		t = tService.getTicket(id); //GETTING THE TICKET USING OUR TICKET SERVICE
 		ObjectMapper om = new ObjectMapper();
 		resp.setStatus(200);
 		try {
-			resp.getWriter().write(om.writeValueAsString(t));
+			resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
