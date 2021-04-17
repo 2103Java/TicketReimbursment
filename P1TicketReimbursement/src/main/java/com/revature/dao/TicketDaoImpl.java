@@ -50,4 +50,10 @@ public class TicketDaoImpl implements TicketDao {
 		return false;
 	}
 
+	@Override
+	public Ticket retrieveTicketByID(int id, Connection conn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

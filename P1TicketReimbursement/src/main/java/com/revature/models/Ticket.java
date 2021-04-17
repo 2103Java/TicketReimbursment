@@ -14,12 +14,15 @@ public class Ticket {
 	private int employeeID;
 	private long stamp;
 	static Timestamp ts;
+	private int ticketID;
 	
-	public Ticket(TYPE type, double amount, boolean approval, int employeeID) {
+	
+	public Ticket(TYPE type, double amount, boolean approval, int employeeID, int ticketID) {
 		this.type = type;
 		this.setAmount(amount);
 		this.setApproval(approval);
 		this.employeeID = employeeID;
+		this.ticketID = ticketID;
 		stamp = ts.getTime();
 	}
 
@@ -49,6 +52,14 @@ public class Ticket {
 
 	public TYPE getType() {
 		return type;
+	}
+
+	public int getTicketID() {
+		return ticketID;
+	}
+
+	public void setTicketID(int ticketID) {
+		this.ticketID = ticketID;
 	}
 
 }
