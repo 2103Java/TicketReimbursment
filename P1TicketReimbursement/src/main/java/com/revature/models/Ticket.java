@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Ticket {
 	
@@ -16,18 +17,19 @@ public class Ticket {
 	private double amount;
 	private APPROVAL approval;
 	private int employeeID;
-	private long stamp;
-	static Timestamp ts;
+	private String stamp;
 	
 	public Ticket(TYPE type, double amount, APPROVAL approval, int employeeID) {
 		this.type = type;
 		this.amount = amount;
 		this.approval= approval;
 		this.employeeID = employeeID;
-		stamp = ts.getTime();
+		Date date = new Date();
+		Timestamp ts = new Timestamp(date.getTime());
+		stamp = ts.toString().substring(0,19);
 	}
 
-	public long getStamp() {
+	public String getStamp() {
 		return stamp;
 	}
 
