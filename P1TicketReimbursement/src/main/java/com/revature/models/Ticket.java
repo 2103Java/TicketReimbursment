@@ -8,17 +8,21 @@ public class Ticket {
 		LODGING, TRAVEL, FOOD, OTHER
 	}
 	
+	enum APPROVAL{
+		REJECTED, PENDING, APPROVED
+	}
+	
 	private TYPE type;
 	private double amount;
-	private boolean approval;
+	private APPROVAL approval;
 	private int employeeID;
 	private long stamp;
 	static Timestamp ts;
 	
-	public Ticket(TYPE type, double amount, boolean approval, int employeeID) {
+	public Ticket(TYPE type, double amount, APPROVAL approval, int employeeID) {
 		this.type = type;
-		this.setAmount(amount);
-		this.setApproval(approval);
+		this.amount = amount;
+		this.approval= approval;
 		this.employeeID = employeeID;
 		stamp = ts.getTime();
 	}
@@ -31,11 +35,11 @@ public class Ticket {
 		return employeeID;
 	}
 
-	public boolean getApproval() {
+	public APPROVAL getApproval() {
 		return approval;
 	}
 
-	public void setApproval(boolean approval) {
+	public void setApproval(APPROVAL approval) {
 		this.approval = approval;
 	}
 
