@@ -8,25 +8,39 @@ public class Ticket {
 	enum TYPE{
 		LODGING, TRAVEL, FOOD, OTHER
 	}
-	
 	enum APPROVAL{
 		REJECTED, PENDING, APPROVED
 	}
+	
 	
 	private TYPE type;
 	private double amount;
 	private APPROVAL approval;
 	private int employeeID;
+
 	private String stamp;
 	
-	public Ticket(TYPE type, double amount, APPROVAL approval, int employeeID) {
+	
+
+
+	Timestamp ts;
+	private int ticketID;
+	
+	
+	public Ticket(TYPE type, double amount, APPROVAL approval, int employeeID, int ticketID) {
+
 		this.type = type;
 		this.amount = amount;
 		this.approval= approval;
 		this.employeeID = employeeID;
+
 		Date date = new Date();
 		Timestamp ts = new Timestamp(date.getTime());
 		stamp = ts.toString().substring(0,19);
+
+		this.ticketID = ticketID;
+		
+
 	}
 
 	public String getStamp() {
@@ -41,9 +55,9 @@ public class Ticket {
 		return approval;
 	}
 
-	public void setApproval(APPROVAL approval) {
-		this.approval = approval;
-	}
+
+
+	
 
 	public double getAmount() {
 		return amount;
@@ -55,6 +69,14 @@ public class Ticket {
 
 	public TYPE getType() {
 		return type;
+	}
+
+	public int getTicketID() {
+		return ticketID;
+	}
+
+	public void setTicketID(int ticketID) {
+		this.ticketID = ticketID;
 	}
 
 }
