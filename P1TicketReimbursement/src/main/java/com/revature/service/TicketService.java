@@ -26,4 +26,20 @@ public class TicketService {
 		return t;
 	}
 
+	public boolean postTicket(Ticket t) {
+		// TODO Auto-generated method stub
+		
+		return false;
+	}
+
+	public boolean putTicket(Ticket t) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Ticket deleteTicket(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
