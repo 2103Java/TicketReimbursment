@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Ticket {
 	
-	enum TYPE{
+	public enum TYPE{
 		LODGING, TRAVEL, FOOD, OTHER
 	}
-	enum APPROVAL{
+	public enum APPROVAL{
 		REJECTED, PENDING, APPROVED
 	}
 	
@@ -41,6 +41,16 @@ public class Ticket {
 		this.ticketID = ticketID;
 		
 
+	}
+
+
+	public Ticket(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID) {
+		this.type = type;
+		this.amount = amount;
+		this.approval= approval;
+		this.employeeID = employeeID;
+		this.stamp = stamp;
+		this.ticketID = ticketID;
 	}
 
 	public String getStamp() {
