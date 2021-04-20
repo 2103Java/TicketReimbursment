@@ -26,9 +26,9 @@ public class TicketDaoImpl implements TicketDao {
 			Statement stmnt = conn.createStatement();
 
 			String sql = "INSERT INTO tickets VALUES ('" + t.getType() + "'," + t.getAmount() + ",'" + t.getApproval()+"','"
-					+ t.getTime()+"',"  + t.getEmployeeID() + ",nextval('tkts_id_seq'))";
+					+ t.getStamp()+"',"  + t.getEmployeeID() + ",nextval('tkts_id_seq'))";
 			
-			System.out.println(t.getTime());
+			
 			System.out.println(t.getStamp());
 			System.out.println(sql);
 			stmnt.executeUpdate(sql);
