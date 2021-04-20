@@ -86,14 +86,7 @@ public class TicketController {
 			//int ticketid = Integer.parseInt(req.getParameter("ticketID"));
 			int empid = Integer.parseInt(req.getParameter("user_id"));
 			//Ticket.APPROVAL approval = Ticket.APPROVAL.valueOf(rs.getString("approval"));
-		Ticket t = new Ticket(
-				ty,
-				am, 
-				ap, 
-				
-				null, empid, 0
-				
-				);
+		Ticket t = new Ticket(ty,am,ap,empid,0);
 	
 				//(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID)
 		
