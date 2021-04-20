@@ -19,6 +19,7 @@ public class TicketService {
 	}
 
 	public Ticket getTicket(int id) { //NOT SUPER SURE WHAT THE POINT OF THIS LAYER IS, AT THIS POINT WE ALREADY HAVE A TICKET OBJECT
+									  //initially wanted this layer so we could verify server and DB access were working separately but we can put them together if you want
 		
 		// TODO Auto-generated method stub
 		
@@ -54,9 +55,15 @@ public class TicketService {
 		}
 	}
 
-	public Ticket deleteTicket(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteTicket(int id) {
+		Ticket j = tDao.retrieveTicketByID(id,conn);
+		
+		if(j == null) return false; //we can add Ticket DNE message or log here?
+		
+		else tDao.deleteTicket(j, conn);
+		
+		
+		return false;
 	}
 
 }
