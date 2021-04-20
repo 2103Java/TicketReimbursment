@@ -121,21 +121,24 @@ public class TicketController {
 	public void deleteTicket(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		
-		Ticket t = null;
+		boolean t = false;
 				
 		
 		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
 		
 		int id = Integer.parseInt(req.getParameter("ticketID")); // GETTING OUR TICKET ID
 		t = tService.deleteTicket(id); //GETTING THE TICKET USING OUR TICKET SERVICE
-		ObjectMapper om = new ObjectMapper();
-		resp.setStatus(200);
-		try {
-			resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
-		} catch (IOException e) {
+		//ObjectMapper om = new ObjectMapper();
+		
+		if(t == true)resp.setStatus(200);
+		else resp.setStatus(400); //Since it is a delete request we don't actually return anything on a successful delete, do we need an ObjectMapper in this instance?
+		
+		//try {
+			//resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		
 	}
 
