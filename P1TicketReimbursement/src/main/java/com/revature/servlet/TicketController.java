@@ -78,13 +78,13 @@ public class TicketController {
 			
 			//THIS STUFF WILL HAVE TO BE CHANGED WHEN WE GET TO SESSIONS, A LOT OF THESE VALUES WILL RETURN NULL FOR NOW
 		
-		
-			Ticket.TYPE ty = Ticket.TYPE.valueOf((String) req.getAttribute("type"));
-			Ticket.APPROVAL ap = Ticket.APPROVAL.valueOf((String) req.getAttribute("approval"));
-			double am = Double.parseDouble((String) req.getAttribute("amount"));
-			String sm = (String) req.getAttribute("stamp");
+			System.out.println( req.getParameter("tkttype"));
+			Ticket.TYPE ty = Ticket.TYPE.valueOf((String) req.getParameter("tkttype"));
+			Ticket.APPROVAL ap = Ticket.APPROVAL.valueOf((String) req.getParameter("approval"));
+			double am = Double.parseDouble((String) req.getParameter("amount"));
+			String sm = (String) req.getParameter("submission_date");
 			int ticketid = Integer.parseInt(req.getParameter("ticketID"));
-			int empid = Integer.parseInt(req.getParameter("employeeID"));
+			int empid = Integer.parseInt(req.getParameter("user_id"));
 			//Ticket.APPROVAL approval = Ticket.APPROVAL.valueOf(rs.getString("approval"));
 		Ticket t = new Ticket(
 				ty,

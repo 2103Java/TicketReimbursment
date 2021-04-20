@@ -2,6 +2,7 @@ package com.revature.models;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ticket {
@@ -22,7 +23,8 @@ public class Ticket {
 	private String stamp;
 	
 	
-
+	
+	private static final SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	Timestamp ts;
 	private int ticketID;
@@ -39,11 +41,16 @@ public class Ticket {
 		this.employeeID = employeeID;
 		this.stamp = stamp;
 		this.ticketID = ticketID;
+		ts = new Timestamp(System.currentTimeMillis());
 	}
 
 	public String getStamp() {
 		return stamp;
 
+	}
+	public String getTime()
+	{
+		return date.format(ts);
 	}
 
 	public int getEmployeeID() {

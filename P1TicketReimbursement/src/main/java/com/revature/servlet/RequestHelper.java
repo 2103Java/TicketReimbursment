@@ -25,16 +25,19 @@ public class RequestHelper  {
 		
 		String endPoint = req.getRequestURI();
 		String method = req.getMethod();
+		System.out.println(method);
+		System.out.println(endPoint);
 		
 		switch(endPoint)
 		{
 		
-		case"Ticket"://END POINT IS TICKET - LOOKING FOR A SPECIFIC TICKET IN THIS INSTANCE
+		case"/P1TicketReimbursement/Ticket"://END POINT IS TICKET - LOOKING FOR A SPECIFIC TICKET IN THIS INSTANCE
 			
 			
 			switch(method)
 			{
 				case "GET": 
+					System.out.println("inside get method in helper");
 				tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
 				break;
 				case "POST": 

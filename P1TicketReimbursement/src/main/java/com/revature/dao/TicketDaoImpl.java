@@ -26,10 +26,14 @@ public class TicketDaoImpl implements TicketDao {
 			Statement stmnt = conn.createStatement();
 
 			String sql = "INSERT INTO tickets VALUES ('" + t.getType() + "'," + t.getAmount() + ",'" + t.getApproval()
-					+ "','" + t.getStamp() + "'" + t.getEmployeeID() + ",nextval('tkts_id_seq'))";
+					+ "','2021-04-17 13:08:52' ," + t.getEmployeeID() + ",nextval('tkts_id_seq'))";
 			
+			System.out.println(t.getTime());
+			System.out.println(t.getStamp());
+			System.out.println(sql);
 			stmnt.executeUpdate(sql);
 
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -242,7 +246,7 @@ public class TicketDaoImpl implements TicketDao {
 		
 		
 		
-		String sql = "Update tickets SET tkt_type = (?), amount = (?), approval = (?),  where ticket_id = (?)";
+		String sql = "Update tickets SET tkttype = (?), amount = (?), approval = (?)  where ticket_id = (?)";
 		
 		
 	
@@ -260,7 +264,7 @@ public class TicketDaoImpl implements TicketDao {
 			ps.setString(3, temp2.toString());
 			ps.setInt(4, t.getTicketID());
 			
-			
+			System.out.println(ps);
 			
 			ps.execute();
 			

@@ -13,7 +13,9 @@ public class TicketService {
 	private static Connection conn;
 	public TicketService(TicketDaoImpl tDao) {
 		this.tDao = tDao;
-		conn = Connector.setUpConnection(); // WHEN THIS CLASS IS INSTANATIATED AT THE HELPER A CONNECTION IS MADE HERE
+		conn = Connector.setUpConnection();
+		//conn = Connector.setUpConnection(); // WHEN THIS CLASS IS INSTANATIATED AT THE HELPER A CONNECTION IS MADE HERE
+		//System.out.println(conn + " is this connection null? because its not supposed to be");
 	}
 
 	public Ticket getTicket(int id) { //NOT SUPER SURE WHAT THE POINT OF THIS LAYER IS, AT THIS POINT WE ALREADY HAVE A TICKET OBJECT
@@ -36,6 +38,7 @@ public class TicketService {
 	public boolean putTicket(Ticket t) { //THIS METHOD WILL CHECK IF THE TICKET ALREADY EXISTS, IF IT DOES, UPDATE IT
 											// IF THE TICKET DOESNT EXISTS IT WILL CREATE ONE IN THE DB
 		// TODO Auto-generated method stub
+		
 		Ticket j = tDao.retrieveTicketByID(t.getTicketID(),conn);
 		if(j != null )
 		{

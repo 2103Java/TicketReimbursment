@@ -21,7 +21,7 @@ public class MasterServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
 		
 		System.out.println("Server is up");
-
+		 //http://localhost:9001/P1TicketReimbursement/serverisup
 		
 		HttpServletRequest  request;
         HttpServletResponse response;

@@ -8,24 +8,28 @@ public class Connector {
 	
 		
 		
-	//
-		private static final String URL = "jdbc:postgresql://database-1.csd4vggmmxv0.us-east-2.rds.amazonaws.com";
-		private static final String USERNAME = "postgres";
-		private static final String PASSWORD = "password";
+	private static final String URL = "jdbc:postgresql://database-1.csd4vggmmxv0.us-east-2.rds.amazonaws.com:5432/postgres";
+	private static final String USERNAME = "postgres";
+	private static final String PASSWORD = "password";
 		
-		private static Connection conn;
+		
 		
 		public static Connection setUpConnection() 
 		{
 			
 			try {
-				conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
-			} catch (SQLException e) {
+				Class.forName("org.postgresql.Driver");
+				Connection conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+				
+				System.out.println(conn);
+				return conn;
+			} catch (SQLException | ReflectiveOperationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
 			}
 			
-			return conn;
+			
 				
 		}
 
