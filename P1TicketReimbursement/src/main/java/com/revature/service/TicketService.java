@@ -33,11 +33,14 @@ public class TicketService {
 		return false;
 	}
 
-	public boolean putTicket(Ticket t) {
+	public boolean putTicket(Ticket t) { //THIS METHOD WILL CHECK IF THE TICKET ALREADY EXISTS, IF IT DOES, UPDATE IT
+											// IF THE TICKET DOESNT EXISTS IT WILL CREATE ONE IN THE DB
 		// TODO Auto-generated method stub
 		Ticket j = tDao.retrieveTicketByID(t.getTicketID(),conn);
 		if(j != null )
 		{
+			//COMPARING T TICKET TO J TICKET TO FIND DIFFERENCE IN UPDATE, THEN PASS CORRECT TICKET DOWN TO DOA
+			
 			tDao.updateTicket(t, conn);
 			return true;
 		}

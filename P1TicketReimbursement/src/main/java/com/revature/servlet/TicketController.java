@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Ticket;
+import com.revature.models.Ticket.APPROVAL;
+import com.revature.models.Ticket.TYPE;
 import com.revature.service.TicketService;
 
 public class TicketController {
@@ -72,25 +74,47 @@ public class TicketController {
 
 	public void putTicket(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
+			
+			
+			//THIS STUFF WILL HAVE TO BE CHANGED WHEN WE GET TO SESSIONS, A LOT OF THESE VALUES WILL RETURN NULL FOR NOW
 		
-		Ticket t = null;
-				
+		
+			Ticket.TYPE ty = Ticket.TYPE.valueOf((String) req.getAttribute("type"));
+			Ticket.APPROVAL ap = Ticket.APPROVAL.valueOf((String) req.getAttribute("approval"));
+			double am = Double.parseDouble((String) req.getAttribute("amount"));
+			String sm = (String) req.getAttribute("stamp");
+			int ticketid = Integer.parseInt(req.getParameter("ticketID"));
+			int empid = Integer.parseInt(req.getParameter("employeeID"));
+			//Ticket.APPROVAL approval = Ticket.APPROVAL.valueOf(rs.getString("approval"));
+		Ticket t = new Ticket(
+				ty,
+				am, 
+				ap, 
+				sm, 
+				empid,
+				ticketid
+				);
+	
+				//(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID)
 		
 		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
 		
-		int id = Integer.parseInt(req.getParameter("ticketID")); // GETTING OUR TICKET ID
+		
 		 if(tService.putTicket(t))
 		 {
-			 
+			 ObjectMapper om = new ObjectMapper();
+				resp.setStatus(200);
+				try {
+					resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		 } //GETTING THE TICKET USING OUR TICKET SERVICE
-		ObjectMapper om = new ObjectMapper();
-		resp.setStatus(200);
-		try {
-			resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 else {
+			 //operation has failed
+		 }
+		
 		
 	}
 

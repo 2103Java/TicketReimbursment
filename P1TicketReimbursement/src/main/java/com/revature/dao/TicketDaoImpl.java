@@ -237,7 +237,11 @@ public class TicketDaoImpl implements TicketDao {
 	
 	@Override
 	public void updateTicket(Ticket t, Connection conn) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
 		String sql = "Update tickets SET tkt_type = (?), amount = (?), approval = (?),  where ticket_id = (?)";
 		
 		
@@ -270,6 +274,14 @@ public class TicketDaoImpl implements TicketDao {
 			System.out.println("UpdateTicketFailed");
 			
 		}
+	}
+
+
+
+	@Override
+	public boolean deleteTicket(Ticket t, Connection conn) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

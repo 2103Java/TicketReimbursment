@@ -32,5 +32,7 @@ public interface TicketDao {
 	
 	//DELETE
 	
+	public boolean deleteTicket(Ticket t, Connection conn);
+	
 
 }
