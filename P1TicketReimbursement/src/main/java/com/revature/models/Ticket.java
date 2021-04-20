@@ -28,24 +28,22 @@ public class Ticket {
 	private int ticketID;
 	
 	
-	public Ticket(TYPE type, double amount, APPROVAL approval, int employeeID, int ticketID) {
+	
 
+
+
+	public Ticket(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID) {
 		this.type = type;
 		this.amount = amount;
 		this.approval= approval;
 		this.employeeID = employeeID;
-
-		Date date = new Date();
-		Timestamp ts = new Timestamp(date.getTime());
-		stamp = ts.toString().substring(0,19);
-
+		this.stamp = stamp;
 		this.ticketID = ticketID;
-		
-
 	}
 
-	public Timestamp getStamp() {
-		return ts;
+	public String getStamp() {
+		return stamp;
+
 	}
 
 	public int getEmployeeID() {

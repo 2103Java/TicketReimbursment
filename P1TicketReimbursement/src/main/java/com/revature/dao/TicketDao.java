@@ -9,12 +9,13 @@ import com.revature.models.Ticket;
 public interface TicketDao {
 	
 	//CREATE
+
 	
 	boolean insertNewTicket(Ticket t, Connection conn);
-	
+
 	//SELECT
 	public List<Ticket> retrieveAllTickets(Connection conn);
-	public List<Ticket> retrieveTicketByApproval(boolean approval, Connection conn);
+	public List<Ticket> retrieveTicketByApproval(String approval, Connection conn);
 	public List<Ticket> retrieveTicketByEmployee(Employee E, Connection conn);
 	public List<Ticket> retrieveTicketByType(String type, Connection conn);
 	public Ticket retrieveTicketByID(int id, Connection conn); 
