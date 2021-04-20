@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MasterServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6352718686718455702L;
 	public static RequestHelper rh = new RequestHelper();
 
 
