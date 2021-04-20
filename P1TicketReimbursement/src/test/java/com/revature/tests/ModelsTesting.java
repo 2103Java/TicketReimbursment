@@ -20,6 +20,8 @@ public class ModelsTesting {
 		
 		if(t1.getType() == null) fail("failed to properly initialize a ticket object");
 		
+		System.out.println(t1.getStamp());
+		
 		assertEquals(10101, t1.getTicketID());
 		assertEquals(1, t1.getEmployeeID());
 		assertTrue(TYPE.LODGING == t1.getType());
