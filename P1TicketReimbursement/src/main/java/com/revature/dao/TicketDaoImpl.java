@@ -8,14 +8,56 @@ import java.util.List;
 
 import com.revature.models.Employee;
 import com.revature.models.Ticket;
+import com.revature.models.Ticket.APPROVAL;
+import com.revature.models.Ticket.TYPE;
 
 public class TicketDaoImpl implements TicketDao {
 
+
 	@Override
-	public boolean insertNewTicket() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insertNewTicket(Ticket t, Connection conn) { //THIS NEEDS ACCESS TOCURRENT USER TO SET USERID WHEN CREATING NEW TICKETS
+								//+ WE MIGHT HAVE TO SET UP SESSIONS JUST SO WE CAN KEEP TRACK OF CURRENT USER
+		
+		String sql = "insert into tickets VALUES (?),(?),(?),(?),(?)";
+		
+		
+		
+		try{ 
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			TYPE temp = t.getType();
+			APPROVAL temp2 = t.getApproval();
+			
+			
+			
+			
+			ps.setString(1,temp.toString());
+			ps.setDouble(2, t.getAmount());
+			ps.setString(3, temp2.toString());
+			ps.setInt(4, t.getTicketID());
+			ps.setTimestamp(0, t.getStamp());
+			
+			
+			
+			
+			ps.execute();
+			
+			
+				
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("UpdateTicketFailed");
+			return false;
+		}
+	
+		
+		return true;
 	}
+	
+
 
 	@Override
 	public List<Ticket> retrieveAllTickets(Connection conn) {
@@ -103,6 +145,44 @@ public class TicketDaoImpl implements TicketDao {
 				return ticket; // WE SHOULD BE ABLE TO GET THIS TICKET FROM POSTMAN NOW
 		
 		
+	}
+
+	
+	@Override
+	public void updateTicket(Ticket t, Connection conn) {
+		// TODO Auto-generated method stub
+		String sql = "Update tickets SET tkt_type = (?), amount = (?), approval = (?),  where ticket_id = (?)";
+		
+		
+	
+		try{ 
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			TYPE temp = t.getType();
+			APPROVAL temp2 = t.getApproval();
+			
+			
+			
+			
+			ps.setString(1,temp.toString());
+			ps.setDouble(2, t.getAmount());
+			ps.setString(3, temp2.toString());
+			ps.setInt(4, t.getTicketID());
+			
+			
+			
+			ps.execute();
+			
+			
+				
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("UpdateTicketFailed");
+			
+		}
 	}
 
 }

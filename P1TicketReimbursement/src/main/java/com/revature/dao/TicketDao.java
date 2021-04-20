@@ -9,7 +9,8 @@ import com.revature.models.Ticket;
 public interface TicketDao {
 	
 	//CREATE
-	public boolean insertNewTicket();
+	
+	boolean insertNewTicket(Ticket t, Connection conn);
 	
 	//SELECT
 	public List<Ticket> retrieveAllTickets(Connection conn);
@@ -21,6 +22,12 @@ public interface TicketDao {
 	//UPDATE
 	public boolean approveTicket(Ticket t, Connection conn);
 	public boolean rejectTicket(Ticket t, Connection conn);
+
+	void updateTicket(Ticket t, Connection conn);
+
+	
+
+	
 	
 	//DELETE
 	

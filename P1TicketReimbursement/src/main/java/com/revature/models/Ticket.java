@@ -1,14 +1,15 @@
 package com.revature.models;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class Ticket {
 	
-	enum TYPE{
+	public enum TYPE{
 		LODGING, TRAVEL, FOOD, OTHER
 	}
-	enum APPROVAL{
+	public enum APPROVAL{
 		REJECTED, PENDING, APPROVED
 	}
 	
@@ -43,8 +44,8 @@ public class Ticket {
 
 	}
 
-	public String getStamp() {
-		return stamp;
+	public Timestamp getStamp() {
+		return ts;
 	}
 
 	public int getEmployeeID() {

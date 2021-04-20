@@ -26,7 +26,8 @@ public class TicketService {
 		return t;
 	}
 
-	public boolean postTicket(Ticket t) {
+	public boolean postTicket(Ticket t) {  //	I DONT THINK WE NEED THIS SINCE WE CAN JUST USE PUT FOR ALL OF OUR CREATION AND UPDATING OF TICKETS
+											// + THAT WILL KEEP ALL OF OUR CREATION TO BE IDEMPOTENT 
 		// TODO Auto-generated method stub
 		
 		return false;
@@ -34,7 +35,17 @@ public class TicketService {
 
 	public boolean putTicket(Ticket t) {
 		// TODO Auto-generated method stub
-		return false;
+		Ticket j = tDao.retrieveTicketByID(t.getTicketID(),conn);
+		if(j != null )
+		{
+			tDao.updateTicket(t, conn);
+			return true;
+		}
+		else
+		{
+			tDao.insertNewTicket(t, conn);
+			return true;
+		}
 	}
 
 	public Ticket deleteTicket(int id) {
