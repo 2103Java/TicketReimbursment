@@ -8,7 +8,7 @@ public class FinanceManager extends Employee{
 	
 	public FinanceManager(int employeeID, String firstName, String username, String pass) {
 		super(employeeID, firstName, username, pass);
-		super.setEmploymentStatus(CATEGORY.FINANCEMANAGER);
+		super.setEmploymentStatus(CATEGORY.FINANCEADMIN);
 	}
 
 	

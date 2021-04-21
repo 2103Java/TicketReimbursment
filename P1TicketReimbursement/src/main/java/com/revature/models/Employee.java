@@ -13,7 +13,7 @@ public class Employee {
 	private List<Ticket> myTickets = new ArrayList<Ticket>();
 	
 	public enum CATEGORY{
-		EMPLOYEE, FINANCEMANAGER
+		EMPLOYEE, FINANCEADMIN
 	}
 	
 	public Employee(int employeeID, String firstName, String username, String pass) {
