@@ -27,7 +27,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		Employee employee = null;
 		try {
 			Statement stmnt = conn.createStatement();
-			String sql = "SELECT * from tktemployees where user_id = " + E.getEmployeeID();
+			String sql = "SELECT * from tktemployees where username = '" + E.getUsername() + "'";
 
 			ResultSet rs = stmnt.executeQuery(sql);
 			
