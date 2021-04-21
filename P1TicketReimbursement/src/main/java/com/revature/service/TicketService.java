@@ -63,7 +63,7 @@ public class TicketService {
 		else tDao.deleteTicket(j, conn);
 		
 		
-		return false;
+		return true;
 	}
 
 }
