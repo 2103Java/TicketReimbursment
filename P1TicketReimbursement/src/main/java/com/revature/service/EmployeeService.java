@@ -26,9 +26,31 @@ public class EmployeeService {
 	// TODO Auto-generated method stub
 	
 	Employee e = null;
-	e = eDao.retrieveTicketByID(id,conn); 
+	e = eDao.findEmployeeByID(id,conn); 
 	
 	return e;
 	}
+	
+	public boolean putEmployee(Employee e) {
+		
+		Employee check = eDao.findEmployee(e, conn);
+		
+		if (check != null) {
+			//eDao.updatePassword(check, conn);
+			return false; //in this case we are trying to create a user who already exists or? Not sure why we should update
+		}
+		
+		else eDao.insertNewEmployee(e, conn);
+		
+		return true;
+	}
 
+	public boolean deleteEmployee(int id) {
+		Employee e = eDao.findEmployeeByID(id, conn);
+		
+		if(e == null) return false;
+		
+		else eDao.deleteEmployee(e, conn);
+		return true;
+	}
 }
