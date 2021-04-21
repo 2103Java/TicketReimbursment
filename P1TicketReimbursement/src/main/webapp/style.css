@@ -1,0 +1,11 @@
+body{
+    background-color: grey;
+}
+
+
+.hidden {
+  display:block;
+  transform: scale(0);
+
+
+}
