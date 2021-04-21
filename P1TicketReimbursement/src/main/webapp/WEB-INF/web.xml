@@ -10,6 +10,7 @@
   <servlet-mapping>
   <servlet-name>MasterServlet</servlet-name>
   <url-pattern>/Ticket</url-pattern>
+  <url-pattern>/Employee</url-pattern>
   </servlet-mapping>
   
 </web-app>
