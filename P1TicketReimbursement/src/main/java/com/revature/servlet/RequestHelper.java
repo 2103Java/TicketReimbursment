@@ -60,7 +60,7 @@ public class RequestHelper  {
 			break;
 			
 		
-		case "Employee":
+		case "/P1TicketReimbursement/Employee":
 			switch(method)
 			{
 				case "GET": 
