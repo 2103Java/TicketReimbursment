@@ -58,10 +58,11 @@
 
         console.log(amount);
         console.log(type);
-        xhr.open('PUT', 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
-        xhr.setRequestHeader('user_id', '1');
-        xhr.setRequestHeader('tkttype', type);
-        xhr.setRequestHeader('amount', amount)
+        xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
+         //xhr.setRequestHeader('user_id', '1');
+        // xhr.setRequestHeader('tkttype', type);
+        // xhr.setRequestHeader('amount', amount)
+        
         xhr.send();
     }
 </script>
