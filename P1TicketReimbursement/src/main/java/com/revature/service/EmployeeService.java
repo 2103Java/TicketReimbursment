@@ -53,4 +53,20 @@ public class EmployeeService {
 		else eDao.deleteEmployee(e, conn);
 		return true;
 	}
+
+
+
+
+	public Employee postEmployee(Employee tmp) {
+		Employee e = eDao.findEmployee(tmp, conn);
+		
+		if(e == null) return null;
+		
+		return e;
+	}
+
+
+
+
+	
 }
