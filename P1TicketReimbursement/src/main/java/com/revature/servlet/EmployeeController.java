@@ -41,12 +41,15 @@ public class EmployeeController {
 	// This will not insert into the DB, instead this is used for login
 	// authentication at it is more secure for the user than a GET
 	public void postEmployee(HttpServletRequest req, HttpServletResponse resp) {
-		Employee e = null;
+		
 
 		resp.setContentType("json/application");
 
-		int id = Integer.parseInt(req.getParameter("user_id"));
-		e = eService.getEmployee(id);
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		Employee tmp = new Employee(0,null,username,password);
+		
+		Employee e = eService.postEmployee(tmp);
 		
 		if(e == null) {
 			resp.setStatus(404);
