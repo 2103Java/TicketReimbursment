@@ -57,6 +57,9 @@ public class EmployeeController {
 		try {
 			BufferedReader br = req.getReader();
 			String json = br.readLine();
+			
+			System.out.println(json);
+			
 			Employee tmp2 = om.readValue(json,Employee.class);
 			tmp = tmp2;
 			

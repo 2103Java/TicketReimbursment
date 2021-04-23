@@ -90,6 +90,7 @@ public class RequestHelper  {
 					break;
 					
 			}
+			break;
 			
 		default:
 			System.out.print("Went to default -- this is a terrible sign");
