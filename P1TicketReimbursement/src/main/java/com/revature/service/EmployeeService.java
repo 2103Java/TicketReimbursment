@@ -58,6 +58,7 @@ public class EmployeeService {
 
 
 	public Employee postEmployee(Employee tmp) {
+		System.out.print("INSIDE EMPLOYEE POST");
 		Employee e = eDao.findEmployee(tmp, conn);
 		if(e == null) return null;
 		

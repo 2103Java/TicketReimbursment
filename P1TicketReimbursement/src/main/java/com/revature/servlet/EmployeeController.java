@@ -43,6 +43,8 @@ public class EmployeeController {
 	// This will not insert into the DB, instead this is used for login
 	// authentication at it is more secure for the user than a GET
 	public void postEmployee(HttpServletRequest req, HttpServletResponse resp) {
+		
+		System.out.println("inside post employee for login");
 		ObjectMapper om = new ObjectMapper();
 
 		resp.setContentType("json/application");
@@ -62,11 +64,11 @@ public class EmployeeController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		System.out.println(tmp);
 		
 		Employee e = eService.postEmployee(tmp);
 		
-		
+		System.out.println(e);
 		
 		if(e == null) {
 			resp.setStatus(404);
@@ -76,6 +78,7 @@ public class EmployeeController {
 		resp.setStatus(200);
 		try {
 			resp.getWriter().write(om.writeValueAsString(e));
+			
 		} catch (IOException E) {
 			E.printStackTrace();
 		}

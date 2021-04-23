@@ -30,9 +30,10 @@ public class RequestHelper  {
 		switch(endPoint)
 		{
 		
+		
 		case"/P1TicketReimbursement/Ticket"://END POINT IS TICKET - LOOKING FOR A SPECIFIC TICKET IN THIS INSTANCE
 			
-			
+			System.out.println("inside ticket");
 			switch(method)
 			{
 				case "GET": 
@@ -40,32 +41,38 @@ public class RequestHelper  {
 				tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
 				break;
 				case "POST": 
+					System.out.print("Went to default -- this is a terrible sign");
 					tcon.postTicket(req,resp);
 					break;
 				
 				case "PUT": 
+					System.out.print("Went to default -- this is a terrible sign");
 					tcon.putTicket(req,resp);
 					break;
 				
 				case "DELETE": 
+					System.out.print("Went to default -- this is a terrible sign");
 					tcon.deleteTicket(req,resp);
 					break;
 				
 					
 				default:
-					break;
-					
+					System.out.print("Went to default -- this is a terrible sign");
+					break;	
 			}
+			System.out.print("Went to default -- this is a terrible sign");
 			break;
 			
 		
 		case "/P1TicketReimbursement/Employee":
+			System.out.print("INSDIE EMPLOYEE SWITCH");
 			switch(method)
 			{
 				case "GET": 
 				econ.getEmployee(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING EMPLOYEE INFORMATION
 				break;
 				case "POST": 
+					System.out.println("Going inside employee post from helper");
 					econ.postEmployee(req,resp);
 					break;
 				
@@ -79,11 +86,13 @@ public class RequestHelper  {
 				
 					
 				default:
+					System.out.print("Went to default -- this is a terrible sign");
 					break;
 					
 			}
-			break;
+			
 		default:
+			System.out.print("Went to default -- this is a terrible sign");
 			break;
 			
 		}
