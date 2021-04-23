@@ -1,6 +1,8 @@
 package com.revature.servlet;
 
+import java.awt.List;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +28,15 @@ public class TicketController {
 		Ticket t = null;
 				
 		
-		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
+		//resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
 		
-		int id = Integer.parseInt(req.getParameter("ticketID")); // GETTING OUR TICKET ID
-		t = tService.getTicket(id); //GETTING THE TICKET USING OUR TICKET SERVICE
+		//Enumeration<String> names = req.getHeaders("ticketID");
+		String names = req.getHeader("ticketID");
+		System.out.println(names);
+		
+		
+		//int id = Integer.parseInt(req.getHeader("ticketID")); // GETTING OUR TICKET ID
+		//t = tService.getTicket(id); //GETTING THE TICKET USING OUR TICKET SERVICE
 		ObjectMapper om = new ObjectMapper();
 		resp.setStatus(200);
 		try {

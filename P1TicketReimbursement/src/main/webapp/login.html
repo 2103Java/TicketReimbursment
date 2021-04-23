@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="loginStyle.css" rel="stylesheet">
 
 
@@ -15,10 +16,10 @@
 <body>
     
 
-    <form id = "loginForm">
+    <form>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Username</label>
-          <input type="username" class="form-control" id="usernameLogin"> 
+          <input type="username" class="form-control" id="usernameLogin" aria-describedby="emailHelp"> 
         </div>
 
         <div class="mb-3">
@@ -26,13 +27,12 @@
           <input type="password" class="form-control" id="passwordLogin">
         </div>
 
-        <button type="submit" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
+        <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
       </form>
-      
 
       <script type="text/javascript">
 
-        function login(form) {
+        function login() {
            
             console.log("Inside Login");
             var xhr = new XMLHttpRequest();
@@ -46,21 +46,20 @@
                     else{
                         alert("Login Successful!");
                     }
-                    alert("Login neither successful or failed!");
                 }
                
             }
     
-            
-            var loginParams ={
-            		"username":form.usernameLogin.value,
-            		"pass":form.passwordLogin.value
-            }
+            let loginUsername = document.getElementById('usernameLogin');
+            let loginPassword = document.getElementById('passwordLogin');
             
 
             xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', true);
-            xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(loginParams));
+            xhr.setRequestHeader('username', loginUsername);
+            xhr.setRequestHeader('password', loginPassword);
+            xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+            xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
+            xhr.send();
 
            
 
