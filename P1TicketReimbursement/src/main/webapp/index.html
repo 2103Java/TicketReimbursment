@@ -1,123 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <link href="style.css" rel="stylesheet">
 <link href="loginStyle.css" rel="stylesheet">
 
 
-    <title>Document</title>
+<title>Document</title>
 </head>
 <body>
 
 
-   
-<!--
+
+	<!--
     THIS IS THE LOGIN FORM
 -->
 
-<h1>Welcome to the Ticket Reimbursement System</h1>
-    <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Username</label>
-          <input type="username" class="form-control" id="usernameLogin" aria-describedby="emailHelp"> 
-        </div>
+	<h1>Welcome to the Ticket Reimbursement System</h1>
+	<form id = "loginForm">
+		<div class="mb-3">
+			<label for="exampleInputEmail1" class="form-label">Username</label> <input
+				type="username" class="form-control" id="usernameLogin"
+				aria-describedby="emailHelp">
+		</div>
 
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="passwordLogin">
-        </div>
+		<div class="mb-3">
+			<label for="exampleInputPassword1" class="form-label">Password</label>
+			<input type="password" class="form-control" id="passwordLogin">
+		</div>
 
-        <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
-      </form>
+		<button type="submit" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
+	</form>
 
 
-<!--
+	<!--
     THIS IS FOR SUBMITTING NEW TICKETS
 -->
 
-<div class="hidden">
-<form>
-  <label for="TicketType">Ticket Type</label>
-  <select id="TicketType" name="TicketType">
-    <option value="LODGING">LODGING</option>
-    <option value="TRAVEL">TRAVEL</option>
-    <option value="FOOD" selected>FOOD</option>
-    <option value="OTHER">OTHER</option>
-  </select>
+	<div class="hidden">
+		<form>
+			<label for="TicketType">Ticket Type</label> <select id="TicketType"
+				name="TicketType">
+				<option value="LODGING">LODGING</option>
+				<option value="TRAVEL">TRAVEL</option>
+				<option value="FOOD" selected>FOOD</option>
+				<option value="OTHER">OTHER</option>
+			</select> <br> <label for="amount">Amount to be reimbursed:</label> <input
+				type="number" id="amount" name="amount" min="1" max="10000">
+			<br>
+			<br> <br>
 
 
-   <br>
-<label for="amount">Amount to be reimbursed:</label>
-<input type="number" id="amount" name="amount" min="1" max="10000">
-<br><br>
-<br>
+		</form>
 
-  
-</form>
- 
-  <button  id="submitButton" onclick="submit()">Submit</button>
-</div>
+		<button id="submitButton" onclick="submit()">Submit</button>
+	</div>
 
 
 
 
-<!--
+	<!--
     THIS IS THE TABLE FOR SHOWING TICKETS FOR A USER
 -->
-<div class="hidden">
+	<div class="hidden">
 
-<table style="width:100%" id="TicketTable">
-  <tr id="tableHeaders">
-    <th>Type</th>
-    <th>Amount</th>
-    <th>Approved</th>
-    <th>Date</th>
-    <th>Ticket ID</th>
-  </tr>
-  <tr>
-    <td id = 'ttype'>Jill</td>
-    <td id='tamount'>Smith</td>
-    <td id="tapproved">50</td>
-    <td id="tdate">50</td>
-    <td id="ticketID">50</td>
-  </tr>
-  <tr>
-    
-  </tr>
-</table>
-  <button  id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View previous Tickets</button>
+		<table style="width: 100%" id="TicketTable">
+			<tr id="tableHeaders">
+				<th>Type</th>
+				<th>Amount</th>
+				<th>Approved</th>
+				<th>Date</th>
+				<th>Ticket ID</th>
+			</tr>
+			<tr>
+				<td id='ttype'>Jill</td>
+				<td id='tamount'>Smith</td>
+				<td id="tapproved">50</td>
+				<td id="tdate">50</td>
+				<td id="ticketID">50</td>
+			</tr>
+			<tr>
 
-</div>
+			</tr>
+		</table>
+		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
+			previous Tickets</button>
 
-<!--
+	</div>
+
+	<!--
     HOME PAGE BUTTONS
 -->
-<div id="Choices" class="hidden">
+	<div id="Choices" class="hidden">
 
-<button  id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View previous Tickets</button>
-<button  id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View previous Tickets</button>
-<button  id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View previous Tickets</button>
+		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
+			previous Tickets</button>
+		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
+			previous Tickets</button>
+		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
+			previous Tickets</button>
 
-</div>
-
-
-
-
-
+	</div>
 
 
-<script type="text/javascript">
+
+
+
+
+
+	<script type="text/javascript">
 
     let user = null;
 
 
     //LOGIN FUNCTION
-    function login() 
+    function login(form) 
         {
            
             console.log("Inside Login");
@@ -135,16 +139,18 @@
                 }
                
             }
+            
+            var loginParams ={
+            		"username":form.usernameLogin.value,
+            		"pass":form.passwordLogin.value
+            }
     
-            let loginUsername = document.getElementById('usernameLogin');
-            let loginPassword = document.getElementById('passwordLogin');
+            
             
 
             xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', true);
-            xhr.setRequestHeader('username', loginUsername);
-            xhr.setRequestHeader('password', loginPassword);
-            xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-            xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
+            xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(loginParams));
 
             xhr.onload = function()
             {
@@ -155,7 +161,7 @@
                 }
             }
 
-            xhr.send();
+            //xhr.send();
 
            
 
@@ -215,6 +221,6 @@
         xhr.send();
      }
 </script>
-    
+
 </body>
 </html>
