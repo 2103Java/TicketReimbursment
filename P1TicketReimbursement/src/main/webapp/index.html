@@ -45,6 +45,7 @@
     function submit() {
         console.log("Inside Submit");
         var xhr = new XMLHttpRequest();
+      
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 alert(xhr.response);
@@ -63,6 +64,8 @@
         // xhr.setRequestHeader('tkttype', type);
         // xhr.setRequestHeader('amount', amount)
         
+        
+
         xhr.send();
     }
 </script>

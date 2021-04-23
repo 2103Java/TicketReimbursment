@@ -26,17 +26,16 @@ public class TicketController {
 	public void getTicket(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
 		Ticket t = null;
-				
-		
-		//resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
-		
-		//Enumeration<String> names = req.getHeaders("ticketID");
-		String names = req.getHeader("ticketID");
+
+		String names = req.getParameter("ticketID");
 		System.out.println(names);
+	    
 		
+		String i = req.getParameter("ticketID");
+		int j = Integer.parseInt(i);
 		
-		//int id = Integer.parseInt(req.getHeader("ticketID")); // GETTING OUR TICKET ID
-		//t = tService.getTicket(id); //GETTING THE TICKET USING OUR TICKET SERVICE
+		t = tService.getTicket(j);
+		
 		ObjectMapper om = new ObjectMapper();
 		resp.setStatus(200);
 		try {
