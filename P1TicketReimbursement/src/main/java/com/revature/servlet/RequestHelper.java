@@ -25,8 +25,7 @@ public class RequestHelper  {
 		
 		String endPoint = req.getRequestURI();
 		String method = req.getMethod();
-		System.out.println(method);
-		System.out.println(endPoint);
+		
 		
 		switch(endPoint)
 		{

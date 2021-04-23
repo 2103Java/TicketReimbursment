@@ -6,13 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="style.css" rel="stylesheet">
+<link href="loginStyle.css" rel="stylesheet">
 
 
     <title>Document</title>
 </head>
-<body>
 
+<h1>Welcome to the Ticket Reimbursement System</h1>
+<body>
+    
+
+    <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="username" class="form-control" id="usernameLogin" aria-describedby="emailHelp"> 
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="passwordLogin">
+        </div>
+
+        <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
+      </form>
+
+      <script type="text/javascript">
+
+        function login() {
+           
+            console.log("Inside Login");
+            var xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    console.log("done")
+                    if(xhr.status == 404){
+                        alert('Login Failed!');
+                    }
+                    else{
+                        alert("Login Successful!");
+                    }
+                }
+               
+            }
+    
+            let loginUsername = document.getElementById('usernameLogin');
+            let loginPassword = document.getElementById('passwordLogin');
+            
+
+            xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', true);
+            xhr.setRequestHeader('username', loginUsername);
+            xhr.setRequestHeader('password', loginPassword);
+            xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+            xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
+            xhr.send();
+
+           
+
+        }
+    </script>
     
     
 </body>
