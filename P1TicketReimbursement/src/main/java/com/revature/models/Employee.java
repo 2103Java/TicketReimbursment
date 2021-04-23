@@ -24,6 +24,11 @@ public class Employee {
 		employment = CATEGORY.EMPLOYEE;
 	}
 
+	public Employee() {
+		super();
+		
+	}
+
 	public Employee(String username, String pass, CATEGORY employment, int employeeID) {
 		this.username = username;
 		this.pass = pass;
