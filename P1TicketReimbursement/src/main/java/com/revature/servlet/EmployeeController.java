@@ -1,10 +1,12 @@
 package com.revature.servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Employee;
 import com.revature.models.Employee.CATEGORY;
@@ -41,22 +43,36 @@ public class EmployeeController {
 	// This will not insert into the DB, instead this is used for login
 	// authentication at it is more secure for the user than a GET
 	public void postEmployee(HttpServletRequest req, HttpServletResponse resp) {
-		
+		ObjectMapper om = new ObjectMapper();
 
 		resp.setContentType("json/application");
 
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		Employee tmp = new Employee(0,null,username,password);
+		String username = "empty";
+		String password = "empty";
+		
+		Employee tmp = null;
+		
+		try {
+			BufferedReader br = req.getReader();
+			String json = br.readLine();
+			Employee tmp2 = om.readValue(json,Employee.class);
+			tmp = tmp2;
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		
 		Employee e = eService.postEmployee(tmp);
+		
+		
 		
 		if(e == null) {
 			resp.setStatus(404);
 			return;
 		}
 		
-		ObjectMapper om = new ObjectMapper();
 		resp.setStatus(200);
 		try {
 			resp.getWriter().write(om.writeValueAsString(e));
