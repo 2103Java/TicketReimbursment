@@ -49,16 +49,12 @@ public class EmployeeController {
 
 		resp.setContentType("json/application");
 
-		String username = "empty";
-		String password = "empty";
 		
 		Employee tmp = null;
 		
 		try {
 			BufferedReader br = req.getReader();
 			String json = br.readLine();
-			
-			System.out.println(json);
 			
 			Employee tmp2 = om.readValue(json,Employee.class);
 			tmp = tmp2;
@@ -67,11 +63,9 @@ public class EmployeeController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println(tmp);
 		
 		Employee e = eService.postEmployee(tmp);
 		
-		System.out.println(e);
 		
 		if(e == null) {
 			resp.setStatus(404);

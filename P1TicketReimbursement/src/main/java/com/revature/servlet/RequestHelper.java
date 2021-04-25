@@ -65,7 +65,6 @@ public class RequestHelper  {
 			
 		
 		case "/P1TicketReimbursement/Employee":
-			System.out.print("INSDIE EMPLOYEE SWITCH");
 			switch(method)
 			{
 				case "GET": 
