@@ -36,7 +36,7 @@
 			<input type="password" class="form-control" id="passwordLogin">
 		</div>
 
-		<button type="submit" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
+		<button type="button" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
 	</form>
 
 
@@ -123,7 +123,7 @@
     //LOGIN FUNCTION
     function login(form) 
         {
-           
+    		
             console.log("Inside Login");
             var xhr = new XMLHttpRequest();
             
