@@ -32,9 +32,19 @@ public class TicketService {
 
 	public boolean postTicket(Ticket t) {  //	I DONT THINK WE NEED THIS SINCE WE CAN JUST USE PUT FOR ALL OF OUR CREATION AND UPDATING OF TICKETS
 											// + THAT WILL KEEP ALL OF OUR CREATION TO BE IDEMPOTENT 
-		// TODO Auto-generated method stub
-		
-		return false;
+		Ticket j = tDao.retrieveTicketByID(t.getTicketID(),conn);
+		if(j != null )
+		{
+			//COMPARING T TICKET TO J TICKET TO FIND DIFFERENCE IN UPDATE, THEN PASS CORRECT TICKET DOWN TO DOA
+			
+			tDao.updateTicket(t, conn);
+			return true;
+		}
+		else
+		{
+			tDao.insertNewTicket(t, conn);
+			return true;
+		}
 	}
 
 	public boolean putTicket(Ticket t) { //THIS METHOD WILL CHECK IF THE TICKET ALREADY EXISTS, IF IT DOES, UPDATE IT
