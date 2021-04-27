@@ -59,7 +59,9 @@ public class Ticket {
 	Timestamp ts;
 	
 	
-	
+	public Ticket() {
+		super();
+	}
 
 
 
