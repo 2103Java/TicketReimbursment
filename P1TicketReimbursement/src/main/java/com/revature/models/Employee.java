@@ -3,14 +3,61 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
+import ENUMS.ENUM;
+
+@Entity
+@Table(name = "employees")
+@TypeDef(name = "category",
+typeClass = ENUM.class)
+
+
+
 public class Employee {
 	
+	@Id
+	@Column(name = "employee_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int employeeID;
+	
+	
+	@Column(name = "first_name")
 	private String firstName;
+	
+	
+	@Column(name = "user_name", unique = true, nullable = false)
+	
 	private String username;
+	
+	
+	@Column(name = "password")
 	private String pass;
+	
+	
+	@Column(name = "category")
+	@Enumerated(EnumType.STRING)
 	private CATEGORY employment;
+	
+	
+	@Column(name = "tickets")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Ticket> myTickets = new ArrayList<Ticket>();
+	
+	
 	
 	public enum CATEGORY{
 		EMPLOYEE, FINANCEADMIN

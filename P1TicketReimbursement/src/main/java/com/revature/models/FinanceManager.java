@@ -3,6 +3,7 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class FinanceManager extends Employee{
 	List<Ticket> tickets = new ArrayList<Ticket>();
 	

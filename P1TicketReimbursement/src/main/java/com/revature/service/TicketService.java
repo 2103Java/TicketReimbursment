@@ -5,13 +5,14 @@ import java.sql.Connection;
 import com.revature.connection.Connector;
 import com.revature.dao.TicketDao;
 import com.revature.dao.TicketDaoImpl;
+import com.revature.dao.TicketHibernateDAO;
 import com.revature.models.Ticket;
 
 public class TicketService {
 
-	private TicketDaoImpl tDao;
+	private TicketHibernateDAO tDao;
 	private static Connection conn;
-	public TicketService(TicketDaoImpl tDao) {
+	public TicketService(TicketHibernateDAO tDao) {
 		this.tDao = tDao;
 		conn = Connector.setUpConnection();
 		//conn = Connector.setUpConnection(); // WHEN THIS CLASS IS INSTANATIATED AT THE HELPER A CONNECTION IS MADE HERE

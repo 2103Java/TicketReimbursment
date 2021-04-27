@@ -93,6 +93,7 @@ public class EmployeeController {
 		String username = req.getParameter("username");
 		String pass = req.getParameter("password");
 		CATEGORY employment = CATEGORY.valueOf(req.getParameter("type"));
+		System.out.println(employment);
 		if (employment.compareTo(CATEGORY.EMPLOYEE) == 0) {
 			e = new Employee(username, pass, employment, 0); // putting a new employee the ID should be handled by DB
 		} else {

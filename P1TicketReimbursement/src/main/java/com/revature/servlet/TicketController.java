@@ -1,6 +1,7 @@
 package com.revature.servlet;
 
 import java.awt.List;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.Employee;
 import com.revature.models.Ticket;
 import com.revature.models.Ticket.APPROVAL;
 import com.revature.models.Ticket.TYPE;
@@ -62,19 +64,30 @@ public class TicketController {
 		
 		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
 		
-//		Ticket t = Integer.parseInt(req.getParameter("ticketID")); 
-//		t = tService.postTicket(t); 
+		//Ticket t = Integer.parseInt(req.getParameter("ticketID")); 
+	
 			
 		//NEED TO FIND  A WAY TO INSERT A TICKET FROM HERE  AND PASS THE NEW TICKET INTO TSERVICE
 		
-		ObjectMapper om = new ObjectMapper();
-		resp.setStatus(200);
 		try {
-			resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
-		} catch (IOException e) {
+			ObjectMapper om = new ObjectMapper();
+		
+			BufferedReader br = req.getReader();
+			String json = br.readLine();
+			
+			System.out.println(json);
+			
+			Ticket tmp2 = om.readValue(json,Ticket.class);
+	
+			tService.postTicket(tmp2); 
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
+		
+		
+		resp.setStatus(200);
+		
 		
 	}
 

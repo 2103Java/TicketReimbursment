@@ -4,18 +4,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.dao.EmployeeDaoImpl;
+import com.revature.dao.EmployeeHibernateDAO;
 import com.revature.dao.TicketDao;
 import com.revature.dao.TicketDaoImpl;
+import com.revature.dao.TicketHibernateDAO;
 import com.revature.service.EmployeeService;
 import com.revature.service.TicketService;
 
 public class RequestHelper  {
 
-	public static TicketDaoImpl tDao = new TicketDaoImpl();
+	public static TicketHibernateDAO tDao = new TicketHibernateDAO();
 	public static TicketService tService = new TicketService(tDao);
 	public static TicketController tcon = new TicketController(tService);
 	
-	public static EmployeeDaoImpl eDao = new EmployeeDaoImpl();
+	public static EmployeeHibernateDAO eDao = new EmployeeHibernateDAO();
 	public static EmployeeService eService = new EmployeeService(eDao);
 	public static EmployeeController econ = new EmployeeController(eService);
 	
@@ -38,29 +40,29 @@ public class RequestHelper  {
 			{
 				case "GET": 
 					System.out.println("inside get method in helper");
-				tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
-				break;
+					tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
+					break;
 				case "POST": 
-					System.out.print("Went to default -- this is a terrible sign");
+				
 					tcon.postTicket(req,resp);
 					break;
 				
 				case "PUT": 
-					System.out.print("Went to default -- this is a terrible sign");
+					
 					tcon.putTicket(req,resp);
 					break;
 				
 				case "DELETE": 
-					System.out.print("Went to default -- this is a terrible sign");
+					
 					tcon.deleteTicket(req,resp);
 					break;
 				
 					
 				default:
-					System.out.print("Went to default -- this is a terrible sign");
+					System.out.print("Went to default -- this is a terrible sign inside ticket method switch");
 					break;	
 			}
-			System.out.print("Went to default -- this is a terrible sign");
+		
 			break;
 			
 		
