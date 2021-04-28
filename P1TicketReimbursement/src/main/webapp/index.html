@@ -36,7 +36,7 @@
 			<input type="password" class="form-control" id="passwordLogin">
 		</div>
 
-		<button type="submit" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
+		<button type="button" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
 	</form>
 
 
@@ -138,6 +138,8 @@
                     }
                     else{
                         alert("Login Successful!");
+                        document.getElementById("Choices").classList.toggle('hidden');
+                        document.getElementById("loginUser").classList.toggle('hidden');
                         console.log("Login Successful!");
                     }
                 }
