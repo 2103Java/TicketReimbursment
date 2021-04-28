@@ -44,7 +44,7 @@
     THIS IS FOR SUBMITTING NEW TICKETS
 -->
 
-	<div class="hidden">
+	<div id="submitTicketForm" class="hidden">
 		<form>
 			<label for="TicketType">Ticket Type</label> <select id="TicketType"
 				name="TicketType">
@@ -98,14 +98,12 @@
 	<!--
     HOME PAGE BUTTONS
 -->
-	<div id="Choices" class="hidden">
+	<div id="Choices" class = "hidden">
 
 		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
 			previous Tickets</button>
-		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
-			previous Tickets</button>
-		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
-			previous Tickets</button>
+		<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit New Ticket</button>
+		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">Logout</button>
 
 	</div>
 
@@ -142,7 +140,6 @@
                         document.getElementById("loginForm").classList.toggle('hidden');
                         console.log("Login Successful!");
                         user = JSON.parse(xhr.responseText);
-                        console.log(user);
                     }
                 }
             }
@@ -158,22 +155,16 @@
 			//I think for login we should go with synchronous request to await a response from the DB
             xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', false);
             xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(loginParams));
-
-           xhr.onload = function()
-           {
-               user = JSON.parse(xhr.responseText);
-               console.log("response loaded");
-               if(user["type"] != "admin")
-               {
-                   document.getElementById("Choices").toggle('hidden');
-               }
-           }
-          
-
-           
-
+            xhr.send(JSON.stringify(loginParams));           
         }
+    
+    //SWITCHS VIEW FROM CHOICES TO SUBMIT TICKET FORM
+    function submitNewTicket(){
+    	document.getElementById("Choices").classList.toggle('hidden');
+    	document.getElementById("submitTicketForm").classList.toggle('hidden');
+    }
+    
+    
 
     //FUNCTION FOR SUBMITTING NEW TICKET -- NOT COMPLETED
     function submit() 
@@ -184,18 +175,24 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 alert(xhr.response);
+                document.getElementById("Choices").classList.toggle('hidden');
+            	document.getElementById("submitTicketForm").classList.toggle('hidden');
             }
         }
 
-        let ticketType = document.getElementById('TicketType');
-        let type = ticketType.value;
+        let ticket ={
+        		"tkttype":document.getElementById('TicketType'),
+        		"approval":'PENDING',
+        		"amount":document.getElementById('amount').value,
+        		"user_id": user.user_id
+        }
+        
 
-        let amount = document.getElementById('amount').value;
-
-        console.log(amount);
-        console.log(type);
-        xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
-        xhr.send();
+        xhr.open("PUT", 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
+        xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+        xhr.send(JSON.stringify(ticket));
+        
+        
     }
 
     //FUNCTION FOR VIEWING ALL TICKETS FROM A USER -- NEEDS TO BE REFACTORED WHEN WE GET USERS STORED AS A JS OBJECT AND SHOULD BE PASSED INTO THIS FUNCTION I THINK
