@@ -128,17 +128,23 @@
             var xhr = new XMLHttpRequest();
             
             xhr.onreadystatechange = function () {
+            	
                 if (xhr.readyState === 4) {
                     console.log("done")
+                    console.log(this.getAllResponseHeaders());
                     if(xhr.status == 404){
                         alert('Login Failed!');
+                        console.log('Login Failed!');
                     }
                     else{
                         alert("Login Successful!");
+                        document.getElementById("Choices").classList.toggle('hidden');
+                        document.getElementById("loginForm").classList.toggle('hidden');
+                        console.log("Login Successful!");
                     }
                 }
-               
             }
+            
             
             var loginParams ={
             		"username":form.usernameLogin.value,
@@ -147,21 +153,20 @@
     
             
             
-
-            xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', true);
+			//I think for login we should go with synchronous request to await a response from the DB
+            xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', false);
             xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
             xhr.send(JSON.stringify(loginParams));
 
-            xhr.onload = function()
-            {
-                user = JSON.parse(xhr.responseText);
-                if(user["type"] != "admin")
-                {
-                    document.getElementById("Choices").toggle('hidden');
-                }
-            }
-
-            //xhr.send();
+           xhr.onload = function()
+           {
+               user = JSON.parse(xhr.responseText);
+               if(user["type"] != "admin")
+               {
+                   document.getElementById("Choices").toggle('hidden');
+               }
+           }
+          
 
            
 
