@@ -100,11 +100,22 @@
 -->
 	<div id="Choices" class = "hidden">
 
-		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
-			previous Tickets</button>
-		<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit New Ticket</button>
-		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">Logout</button>
-
+        
+        <div>
+            <button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">Viewprevious Tickets</button>
+        </div>
+        <div>
+            <button id="SubmitNewTicket" onclick="submitNewTicket()">Submit New Ticket</button>
+        </div>
+		<div>
+		    <button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">Logout</button> 
+        </div>
+        <div>
+             <button id="Logout" onclick="Logout()">LOGOUT</button>
+        </div>
+        <div>
+             <button id="ViewAllTickets" onclick="Logout()">ViewAllTickets</button>
+        </div>
 	</div>
 
 
@@ -115,7 +126,7 @@
 
 	<script type="text/javascript">
 
-    let user = {};
+    let user = null;
 
 
     //LOGIN FUNCTION
@@ -128,7 +139,8 @@
             xhr.onreadystatechange = function () {
             	
                 if (xhr.readyState === 4) {
-                    console.log("done")
+                    console.log(xhr.responseText);
+
                     console.log(this.getAllResponseHeaders());
                     if(xhr.status == 404){
                         alert('Login Failed!');
@@ -136,10 +148,11 @@
                     }
                     else{
                         alert("Login Successful!");
-                        document.getElementById("Choices").classList.toggle('hidden');
-                        document.getElementById("loginForm").classList.toggle('hidden');
                         console.log("Login Successful!");
-                        user = JSON.parse(xhr.responseText);
+                        
+                        user = JSON.stringify(xhr.responseText);
+                        console.log(user);
+                        CheckWhichButtons();
                     }
                 }
             }
@@ -164,7 +177,29 @@
     	document.getElementById("submitTicketForm").classList.toggle('hidden');
     }
     
-    
+    //  DEFAULT FUNCTION FOR CHECKING BUTTONS ON AND OFF
+    function CheckWhichButtons(){
+        console.log(user);
+        if(user != null)
+        {
+            document.getElementById("loginForm").classList.toggle('hidden');
+            document.getElementById("Choices").classList.toggle('hidden');
+
+            if(user.category == "EMPLOYEE")
+            {
+                
+                document.getElementById("loginForm").classList.toggle('hidden');
+                document.getElementById("logout").classList.toggle('hidden');
+            }
+            else{
+                
+                document.getElementById("loginForm").classList.toggle('hidden');
+                document.getElementById("logout").classList.toggle('hidden');
+                document.getElementById("ViewAllTickets").classList.toggle('hidden');
+            }
+            
+        }
+    }
 
     //FUNCTION FOR SUBMITTING NEW TICKET -- NOT COMPLETED
     function submit() 
@@ -193,6 +228,15 @@
         xhr.send(JSON.stringify(ticket));
         
         
+    }
+
+    //LOGOUT FUNCTION 
+    function Logout()
+    {
+        user = null;
+        document.getElementById("loginForm").classList.toggle('hidden');
+        document.getElementById("Choices").classList.toggle('hidden');
+
     }
 
     //FUNCTION FOR VIEWING ALL TICKETS FROM A USER -- NEEDS TO BE REFACTORED WHEN WE GET USERS STORED AS A JS OBJECT AND SHOULD BE PASSED INTO THIS FUNCTION I THINK
