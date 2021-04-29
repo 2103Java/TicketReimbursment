@@ -70,7 +70,7 @@
 	<!--
     THIS IS THE TABLE FOR SHOWING TICKETS FOR A USER
 -->
-	<div id="displayCurrTicket" class="hidden">
+	<div id="displayTicketTable" class="hidden">
 
 		<table style="width: 100%" id="TicketTable">
 			<tr id="tableHeaders">
@@ -94,7 +94,8 @@
 
 			</tr>
 		</table>
-		<button id="nextTicket" onclick="">nextTicket</button>
+		<button id="Back" onclick="">Back</button>
+		
 
 	</div>
 
@@ -256,6 +257,8 @@
                 for(let i = 0; i < tickets.ticketArr.length; i++){
                 	tempDisplayTickets(tickets.ticketArr[i]);
                 }
+                document.getElementById('displayTicketTable').classList.toggle('hidden');
+                
             
             }
         }
@@ -269,21 +272,53 @@
    
      }
     
-     function sleep(ms) {
-    	  return new Promise(resolve => setTimeout(resolve, ms));
-    	}
+    
     
     function tempDisplayTickets(ticket){
     	
+    		console.log(ticket);
+    		let table = document.getElementById('TicketTable');
+    		//let row = table.insertRow(0);
+    		let row = table.insertRow(-1);
     		
-    		document.getElementById('ttype').textContent = ticket["type"];
-    		document.getElementById('tamount').textContent = "'" + ticket["amount"]  +"'";
-            document.getElementById('tapproved').textContent = ticket["approval"];
-            document.getElementById('tdate').textContent = ticket["stamp"];
-            document.getElementById('ticketID').textContent = "'" + ticket["ticketID"] +"'";
-            document.getElementById('displayCurrTicket').classList.toggle('hidden');
-            sleep(5000).then(()=>{});
+    		let cell1 = row.insertCell(0);
+    		cell1.innerHTML = "'" + ticket["ticketID"] +"'";
+    		
+    		
+    		let cell2 = row.insertCell(0);
+    		cell2.innerHTML = ticket["stamp"];
+    		
+    		
+    		let cell3 = row.insertCell(0);
+    		cell3.innerHTML = ticket["approval"];
+    		
+    		
+    		let cell4 = row.insertCell(0);
+    		cell4.innerHTML = "'" + ticket["amount"]  +"'";
+    		
+    		
+    		let cell5 = row.insertCell(0);
+    		cell5.innerHTML = ticket["type"];
+    		
+    		
+    		
+    	//	document.getElementById('ttype').textContent = ticket["type"];
+    	//	document.getElementById('tamount').textContent = "'" + ticket["amount"]  +"'";
+        //    document.getElementById('tapproved').textContent = ticket["approval"];
+        //    document.getElementById('tdate').textContent = ticket["stamp"];
+         //   document.getElementById('ticketID').textContent = "'" + ticket["ticketID"] +"'";
+         //   document.getElementById('displayCurrTicket').classList.toggle('hidden');
+           
     	
+    	
+    }
+    
+    function Back()
+    {
+    	
+    	document.getElementById('displayTicketTable').classList.toggle('hidden');
+    	//document.getElementById("loginForm").classList.toggle('hidden');
+        document.getElementById("Choices").classList.toggle('hidden');
     	
     }
 </script>
