@@ -1,8 +1,9 @@
 package com.revature.servlet;
 
-import java.awt.List;
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,27 +27,55 @@ public class TicketController {
 	}
 
 	public void getTicket(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
-		Ticket t = null;
-
-		String names = req.getParameter("ticketID");
-		System.out.println(names);
-	    
-		
-		String i = req.getParameter("ticketID");
-		int j = Integer.parseInt(i);
-		
-		t = tService.getTicket(j);
-		
+		System.out.println("inside GET TicketController");
 		ObjectMapper om = new ObjectMapper();
-		resp.setStatus(200);
-		try {
-			resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		resp.setContentType("json/application");
+
 		
+		int employeeID = Integer.parseInt(req.getParameter("employeeID"));
+		System.out.println(employeeID);
+		
+		List<Ticket> t = new ArrayList<Ticket>();
+				
+		
+		
+		resp.setStatus(200);
+		
+		t = tService.getTicket(employeeID);
+		
+		if(t.isEmpty()) {
+			try {
+				resp.getWriter().write("You don't have any tickets at this time");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		else {
+			
+			try {
+				resp.getWriter().write("{ \"ticketArr\":[");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			for(int i = 0; i < t.size(); i++) {
+				try {
+					
+					resp.getWriter().write(om.writeValueAsString(t.get(i)));
+					if(i == t.size()-1) {
+						resp.getWriter().write("]}");
+						break;
+					}
+					else resp.getWriter().write(",");
+					
+				} catch (IOException E) {
+					E.printStackTrace();
+				}
+			}
+		}
 		
 		
 	}
