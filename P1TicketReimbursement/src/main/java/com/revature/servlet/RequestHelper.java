@@ -37,21 +37,21 @@ public class RequestHelper  {
 			switch(method)
 			{
 				case "GET": 
-					System.out.println("inside get method in helper");
+					System.out.println("Entering GET in ticket Controller");
 				tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
 				break;
 				case "POST": 
-					System.out.print("Went to default -- this is a terrible sign");
+					System.out.println("Entering POST in ticket Controller");
 					tcon.postTicket(req,resp);
 					break;
 				
 				case "PUT": 
-					System.out.print("Went to default -- this is a terrible sign");
+					System.out.println("Entering PUT in ticket Controller");
 					tcon.putTicket(req,resp);
 					break;
 				
 				case "DELETE": 
-					System.out.print("Went to default -- this is a terrible sign");
+					System.out.println("Entering DELETE in ticket Controller");
 					tcon.deleteTicket(req,resp);
 					break;
 				
@@ -60,7 +60,6 @@ public class RequestHelper  {
 					System.out.print("Went to default -- this is a terrible sign");
 					break;	
 			}
-			System.out.print("Went to default -- this is a terrible sign");
 			break;
 			
 		
@@ -92,7 +91,6 @@ public class RequestHelper  {
 			break;
 			
 		default:
-			System.out.print("Went to default -- this is a terrible sign");
 			break;
 			
 		}

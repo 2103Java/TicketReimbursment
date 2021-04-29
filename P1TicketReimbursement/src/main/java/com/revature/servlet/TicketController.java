@@ -1,6 +1,7 @@
 package com.revature.servlet;
 
 import java.awt.List;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.models.Employee;
 import com.revature.models.Ticket;
 import com.revature.models.Ticket.APPROVAL;
 import com.revature.models.Ticket.TYPE;
@@ -79,40 +81,43 @@ public class TicketController {
 	}
 
 	public void putTicket(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+
+		System.out.println("inside PUT TicketController");
+		ObjectMapper om = new ObjectMapper();
+
+		resp.setContentType("json/application");
+
+		
+		Ticket t = null;
+		
+		try {
+			BufferedReader br = req.getReader();
+			String json = br.readLine();
 			
+			Ticket tmp = om.readValue(json,Ticket.class);
+			t = tmp;
 			
-			//THIS STUFF WILL HAVE TO BE CHANGED WHEN WE GET TO SESSIONS, A LOT OF THESE VALUES WILL RETURN NULL FOR NOW
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		
+		if(t == null) {
+			resp.setStatus(404);
+			return;
+		}
+		
+		tService.putTicket(t);
+		
+		resp.setStatus(200);
+		try {
+			resp.getWriter().write(om.writeValueAsString(t));
 			
-			Ticket.TYPE ty = Ticket.TYPE.valueOf((String) req.getHeader("tkttype"));
-			Ticket.APPROVAL ap = Ticket.APPROVAL.valueOf((String) req.getHeader("approval"));
-			double am = Double.parseDouble((String) req.getHeader("amount"));
-			//String sm = (String) req.getParameter("submission_date");
-			//int ticketid = Integer.parseInt(req.getParameter("ticketID"));
-			int empid = Integer.parseInt(req.getHeader("user_id"));
-			//Ticket.APPROVAL approval = Ticket.APPROVAL.valueOf(rs.getString("approval"));
-		Ticket t = new Ticket(ty,am,ap,empid,0);
-	
-				//(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID)
-		
-		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
-		
-		
-		 if(tService.putTicket(t))
-		 {
-			 ObjectMapper om = new ObjectMapper();
-				resp.setStatus(200);
-				try {
-					resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		 } //GETTING THE TICKET USING OUR TICKET SERVICE
-		 else {
-			 //operation has failed
-		 }
+		} catch (IOException E) {
+			E.printStackTrace();
+		}
+
 		
 		
 	}
