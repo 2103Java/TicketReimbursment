@@ -1,10 +1,13 @@
 package com.revature.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.connection.Connector;
 import com.revature.dao.TicketDao;
 import com.revature.dao.TicketDaoImpl;
+import com.revature.models.Employee;
 import com.revature.models.Ticket;
 
 public class TicketService {
@@ -18,13 +21,13 @@ public class TicketService {
 		//System.out.println(conn + " is this connection null? because its not supposed to be");
 	}
 
-	public Ticket getTicket(int id) { //NOT SUPER SURE WHAT THE POINT OF THIS LAYER IS, AT THIS POINT WE ALREADY HAVE A TICKET OBJECT
+	public List<Ticket> getTicket(int employeeID) { //NOT SUPER SURE WHAT THE POINT OF THIS LAYER IS, AT THIS POINT WE ALREADY HAVE A TICKET OBJECT
 									  //initially wanted this layer so we could verify server and DB access were working separately but we can put them together if you want
 		
 		// TODO Auto-generated method stub
 		
-		Ticket t = null;
-		t = tDao.retrieveTicketByID(id,conn); 
+		List<Ticket> t = new ArrayList<Ticket>();
+		t = tDao.retrieveTicketByEmployee(employeeID, conn);
 		
 		return t;
 	}
