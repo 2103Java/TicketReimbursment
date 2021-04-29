@@ -24,7 +24,7 @@
 -->
 
 	<h1>Welcome to the Ticket Reimbursement System</h1>
-	<form id = "loginForm">
+	<form id="loginForm">
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">Username</label> <input
 				type="username" class="form-control" id="usernameLogin"
@@ -36,7 +36,8 @@
 			<input type="password" class="form-control" id="passwordLogin">
 		</div>
 
-		<button type="button" class="btn btn-primary" onclick="login(document.getElementById('loginForm'))">Login</button>
+		<button type="button" class="btn btn-primary"
+			onclick="login(document.getElementById('loginForm'))">Login</button>
 	</form>
 
 
@@ -52,10 +53,10 @@
 				<option value="TRAVEL">TRAVEL</option>
 				<option value="FOOD" selected>FOOD</option>
 				<option value="OTHER">OTHER</option>
-			</select> <br> <label for="amount">Amount to be reimbursed:</label> <input
-				type="number" id="amount" name="amount" min="1" max="10000">
-			<br>
-			<br> <br>
+			</select> <br> 
+			<label for="amount">Amount to be reimbursed:</label> 
+			<input type="number" id="amount" name="amount" min="1" max="10000">
+			<br> <br> <br>
 
 
 		</form>
@@ -98,24 +99,24 @@
 	<!--
     HOME PAGE BUTTONS
 -->
-	<div id="Choices" class = "hidden">
+	<div id="Choices" class="hidden">
 
-        
-        <div>
-            <button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">Viewprevious Tickets</button>
-        </div>
-        <div>
-            <button id="SubmitNewTicket" onclick="submitNewTicket()">Submit New Ticket</button>
-        </div>
+
 		<div>
-		    <button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">Logout</button> 
-        </div>
-        <div>
-             <button id="Logout" onclick="Logout()">LOGOUT</button>
-        </div>
-        <div>
-             <button id="ViewAllTickets" onclick="Logout()">ViewAllTickets</button>
-        </div>
+			<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
+				Previous Tickets</button>
+		</div>
+		<div>
+			<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit
+				New Ticket</button>
+		</div>
+		
+		<div>
+			<button id="logout" onclick="Logout()">Logout</button>
+		</div>
+		<div>
+			<button id="ViewAllTickets" onclick="viewAllTickets()">ViewAllTickets</button>
+		</div>
 	</div>
 
 
@@ -150,8 +151,8 @@
                         alert("Login Successful!");
                         console.log("Login Successful!");
                         
-                        user = JSON.stringify(xhr.responseText);
-                        console.log(user);
+                        user = JSON.parse(xhr.responseText);
+                        console.log(user.employeeID);
                         CheckWhichButtons();
                     }
                 }
@@ -166,39 +167,33 @@
             
             
 			//I think for login we should go with synchronous request to await a response from the DB
-            xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', false);
+            xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', true);
             xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
             xhr.send(JSON.stringify(loginParams));           
         }
     
-    //SWITCHS VIEW FROM CHOICES TO SUBMIT TICKET FORM
-    function submitNewTicket(){
-    	document.getElementById("Choices").classList.toggle('hidden');
-    	document.getElementById("submitTicketForm").classList.toggle('hidden');
-    }
     
     //  DEFAULT FUNCTION FOR CHECKING BUTTONS ON AND OFF
     function CheckWhichButtons(){
         console.log(user);
         if(user != null)
         {
-            document.getElementById("loginForm").classList.toggle('hidden');
+        	document.getElementById("loginForm").classList.toggle('hidden');
             document.getElementById("Choices").classList.toggle('hidden');
-
+            
             if(user.category == "EMPLOYEE")
             {
-                
-                document.getElementById("loginForm").classList.toggle('hidden');
-                document.getElementById("logout").classList.toggle('hidden');
-            }
-            else{
-                
-                document.getElementById("loginForm").classList.toggle('hidden');
-                document.getElementById("logout").classList.toggle('hidden');
-                document.getElementById("ViewAllTickets").classList.toggle('hidden');
-            }
-            
+            	document.getElementById("ViewAllTickets").classList.toggle('hidden');
+            }     
         }
+    }
+    
+    
+    
+    //SWITCHS VIEW FROM CHOICES TO SUBMIT TICKET FORM
+    function submitNewTicket(){
+    	document.getElementById("Choices").classList.toggle('hidden');
+    	document.getElementById("submitTicketForm").classList.toggle('hidden');
     }
 
     //FUNCTION FOR SUBMITTING NEW TICKET -- NOT COMPLETED
@@ -215,16 +210,20 @@
             }
         }
 
+        var type = document.getElementById('TicketType');
+        
         let ticket ={
-        		"tkttype":document.getElementById('TicketType'),
+        		"type":type.options[type.selectedIndex].text,
         		"approval":'PENDING',
         		"amount":document.getElementById('amount').value,
-        		"user_id": user.user_id
+        		"employeeID": user.employeeID
         }
         
-
+        console.log(JSON.stringify(ticket));
+        
         xhr.open("PUT", 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
         xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+        console.log(JSON.stringify(ticket));
         xhr.send(JSON.stringify(ticket));
         
         
