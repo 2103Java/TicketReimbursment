@@ -94,7 +94,7 @@
 
 			</tr>
 		</table>
-		<button id="Back" onclick="">Back</button>
+		<button id="Back" onclick="Back()">Back</button>
 		
 
 	</div>
@@ -258,7 +258,7 @@
                 	tempDisplayTickets(tickets.ticketArr[i]);
                 }
                 document.getElementById('displayTicketTable').classList.toggle('hidden');
-                
+                document.getElementById("Choices").classList.toggle('hidden');
             
             }
         }
@@ -315,7 +315,12 @@
     
     function Back()
     {
-    	
+    	console.log("back button")
+    	let table = document.getElementById('TicketTable');
+    	for(var i = table.rows.length - 1; i > 0; i--)
+		{
+		    table.deleteRow(i);
+		}
     	document.getElementById('displayTicketTable').classList.toggle('hidden');
     	//document.getElementById("loginForm").classList.toggle('hidden');
         document.getElementById("Choices").classList.toggle('hidden');
