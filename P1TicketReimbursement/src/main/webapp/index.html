@@ -23,7 +23,7 @@
     THIS IS THE LOGIN FORM
 -->
 
-	<h1>Welcome to the Ticket Reimbursement System</h1>
+	<h1 id="loginHeader">Welcome to the Ticket Reimbursement System</h1>
 	<form id="loginForm">
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">Username</label> <input
@@ -70,7 +70,7 @@
 	<!--
     THIS IS THE TABLE FOR SHOWING TICKETS FOR A USER
 -->
-	<div class="hidden">
+	<div id="displayCurrTicket" class="hidden">
 
 		<table style="width: 100%" id="TicketTable">
 			<tr id="tableHeaders">
@@ -86,13 +86,15 @@
 				<td id="tapproved">50</td>
 				<td id="tdate">50</td>
 				<td id="ticketID">50</td>
+				<td id="currIndex" style="display:none">0</td>
+				<td id="currLength" style="display:none">0</td>
+				
 			</tr>
 			<tr>
 
 			</tr>
 		</table>
-		<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
-			previous Tickets</button>
+		<button id="nextTicket" onclick="">nextTicket</button>
 
 	</div>
 
@@ -107,8 +109,8 @@
 				Previous Tickets</button>
 		</div>
 		<div>
-			<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit
-				New Ticket</button>
+			<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit <!-- DONE -->
+				New Ticket</button> 
 		</div>
 		
 		<div>
@@ -150,6 +152,7 @@
                     else{
                         alert("Login Successful!");
                         console.log("Login Successful!");
+                        document.getElementById('loginHeader').classList.toggle('hidden');
                         
                         user = JSON.parse(xhr.responseText);
                         console.log(user.employeeID);
@@ -181,7 +184,7 @@
         	document.getElementById("loginForm").classList.toggle('hidden');
             document.getElementById("Choices").classList.toggle('hidden');
             
-            if(user.category == "EMPLOYEE")
+            if(user.employment == "EMPLOYEE")
             {
             	document.getElementById("ViewAllTickets").classList.toggle('hidden');
             }     
@@ -241,33 +244,48 @@
     //FUNCTION FOR VIEWING ALL TICKETS FROM A USER -- NEEDS TO BE REFACTORED WHEN WE GET USERS STORED AS A JS OBJECT AND SHOULD BE PASSED INTO THIS FUNCTION I THINK
      function ViewPreviousTickets() 
      {
-        console.log("Inside Submit");
+        console.log("Inside ViewPreviousTickets");
+        
         var xhr = new XMLHttpRequest();
-    
+    	
+        
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
-                alert(xhr.response);
+                let tickets = JSON.parse(xhr.response);
+              
+                for(let i = 0; i < tickets.ticketArr.length; i++){
+                	tempDisplayTickets(tickets.ticketArr[i]);
+                }
+            
             }
         }
 
-    
-        xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?ticketID=10134', true);
-
-         xhr.onload = function(){
-            var resp = JSON.parse(xhr.responseText);
-           
-            let temp = document.getElementById('ttype');
-            temp.textContent = resp["type"];
-            document.getElementById('tamount').textContent = resp["amount"];
-            document.getElementById('tapproved').textContent = resp["approval"];
-            document.getElementById('tdate').textContent = resp["stamp"];
-            document.getElementById('tickedID').textContent = resp["ticketID"];
-        }
+        
+        xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID='+user.employeeID, true);
+        xhr.send();
 
                 //THIS FUNCTION WORKS AND RETURNS A TICKET THEN INSERTS IT INTO A TABLE
                 // IT WILL HAVE TO BE CHANGED WHEN WE GET LOGIN SET UP TO RETURN ALL TICKETS OF A USER INSTEAD OF JUST 1 TICKET AT A TIME
-        xhr.send();
+   
      }
+    
+     function sleep(ms) {
+    	  return new Promise(resolve => setTimeout(resolve, ms));
+    	}
+    
+    function tempDisplayTickets(ticket){
+    	
+    		
+    		document.getElementById('ttype').textContent = ticket["type"];
+    		document.getElementById('tamount').textContent = "'" + ticket["amount"]  +"'";
+            document.getElementById('tapproved').textContent = ticket["approval"];
+            document.getElementById('tdate').textContent = ticket["stamp"];
+            document.getElementById('ticketID').textContent = "'" + ticket["ticketID"] +"'";
+            document.getElementById('displayCurrTicket').classList.toggle('hidden');
+            sleep(5000).then(()=>{});
+    	
+    	
+    }
 </script>
 
 </body>
