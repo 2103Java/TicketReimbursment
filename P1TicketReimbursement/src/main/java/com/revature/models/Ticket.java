@@ -25,7 +25,19 @@ public class Ticket {
 	
 	
 
+	public Ticket() {
+		super();
+		Date date = new Date();
+		Timestamp ts = new Timestamp(date.getTime());
+		stamp = ts.toString().substring(0,19);
+		this.ticketID = 0;
+	}
 
+	@Override
+	public String toString() {
+		return "Ticket [type=" + type + ", amount=" + amount + ", approval=" + approval + ", employeeID=" + employeeID
+				+ ", stamp=" + stamp + ", ticketID=" + ticketID + "]";
+	}
 
 	public Ticket(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID) {
 		this.type = type;
@@ -56,6 +68,9 @@ public class Ticket {
 
 	public int getEmployeeID() {
 		return employeeID;
+	}
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
 	}
 
 	public APPROVAL getApproval() {
