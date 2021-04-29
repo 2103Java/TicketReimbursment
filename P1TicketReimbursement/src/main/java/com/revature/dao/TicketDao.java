@@ -16,7 +16,7 @@ public interface TicketDao {
 	//SELECT
 	public List<Ticket> retrieveAllTickets(Connection conn);
 	public List<Ticket> retrieveTicketByApproval(String approval, Connection conn);
-	public List<Ticket> retrieveTicketByEmployee(Employee E, Connection conn);
+	public List<Ticket> retrieveTicketByEmployee(int employeeID, Connection conn);
 	public List<Ticket> retrieveTicketByType(String type, Connection conn);
 	public Ticket retrieveTicketByID(int id, Connection conn); 
 	

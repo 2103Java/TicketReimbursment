@@ -104,12 +104,12 @@ public class TicketDaoImpl implements TicketDao {
 	}
 
 	@Override
-	public List<Ticket> retrieveTicketByEmployee(Employee E, Connection conn) {
+	public List<Ticket> retrieveTicketByEmployee(int employeeID, Connection conn) {
 		List<Ticket> tickets = new ArrayList<Ticket>();
 		try {
 			Statement stmnt = conn.createStatement();
 
-			String sql = "SELECT * from tickets where user_id = " + E.getEmployeeID();
+			String sql = "SELECT * from tickets where user_id = " + employeeID;
 			
 			ResultSet rs = stmnt.executeQuery(sql);
 			
