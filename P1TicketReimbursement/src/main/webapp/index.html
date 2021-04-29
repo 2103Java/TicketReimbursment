@@ -23,8 +23,10 @@
     THIS IS THE LOGIN FORM
 -->
 
-	<h1 id="loginHeader">Welcome to the Ticket Reimbursement System</h1>
-	<form id="loginForm">
+
+    <div id="loginDiv">
+        <h1 id="loginHeader">Welcome to the Ticket Reimbursement System</h1>
+	<form id="loginForm" >
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">Username</label> <input
 				type="username" class="form-control" id="usernameLogin"
@@ -39,6 +41,9 @@
 		<button type="button" class="btn btn-primary"
 			onclick="login(document.getElementById('loginForm'))">Login</button>
 	</form>
+
+    </div>
+	
 
 
 	<!--
@@ -152,8 +157,7 @@
                     else{
                         alert("Login Successful!");
                         console.log("Login Successful!");
-                        document.getElementById('loginHeader').classList.toggle('hidden');
-                        
+                        console.log(xhr.responseText);
                         user = JSON.parse(xhr.responseText);
                         console.log(user.employeeID);
                         CheckWhichButtons();
@@ -181,7 +185,7 @@
         console.log(user);
         if(user != null)
         {
-        	document.getElementById("loginForm").classList.toggle('hidden');
+        	document.getElementById("loginDiv").classList.toggle('hidden');
             document.getElementById("Choices").classList.toggle('hidden');
             
             if(user.employment == "EMPLOYEE")
@@ -236,7 +240,12 @@
     function Logout()
     {
         user = null;
-        document.getElementById("loginForm").classList.toggle('hidden');
+        if(document.getElementById("loginDiv").contains('hidden'))
+        {
+            document.getElementById("loginDiv").classList.toggle('hidden');
+        }
+        
+        
         document.getElementById("Choices").classList.toggle('hidden');
 
     }
