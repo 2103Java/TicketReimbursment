@@ -32,9 +32,15 @@ public class TicketController {
 
 		resp.setContentType("json/application");
 
+		String adminGetCheck = req.getParameter("employeeID");
+		int employeeID = 0;
+		if(adminGetCheck.equalsIgnoreCase("*")) {
+			employeeID = -1;
+		}
+		else {
+		employeeID = Integer.parseInt(adminGetCheck);
+		}
 		
-		int employeeID = Integer.parseInt(req.getParameter("employeeID"));
-		System.out.println(employeeID);
 		
 		List<Ticket> t = new ArrayList<Ticket>();
 				
