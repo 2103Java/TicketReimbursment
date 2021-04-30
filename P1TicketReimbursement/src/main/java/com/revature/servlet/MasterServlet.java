@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class MasterServlet extends HttpServlet {
 
 	/**
@@ -15,13 +19,15 @@ public class MasterServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -6352718686718455702L;
 	public static RequestHelper rh = new RequestHelper();
-
+	public static final Logger logger = LogManager.getLogger(MasterServlet.class);
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
 		
 		System.out.println("Server is up");
-		 //http://localhost:9001/P1TicketReimbursement/serverisup
+		//BasicConfigurator.configure();
+		//MasterServlet.logger.error("Server is up");
+		 
 		
 		HttpServletRequest  request;
         HttpServletResponse response;
