@@ -144,7 +144,11 @@ public class TicketController {
 			BufferedReader br = req.getReader();
 			String json = br.readLine();
 			
+			
 			Ticket tmp = om.readValue(json,Ticket.class);
+			
+			System.out.println(t);
+			System.out.println(json);
 			t = tmp;
 			
 		} catch (IOException e) {
