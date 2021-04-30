@@ -19,6 +19,7 @@ public class Ticket {
 	private int employeeID;
 	private String stamp;
 	private int ticketID;
+	private String tkt_description;
 	
 	Timestamp ts;
 	
@@ -59,6 +60,18 @@ public class Ticket {
 		Date date = new Date();
 		Timestamp ts = new Timestamp(date.getTime());
 		stamp = ts.toString().substring(0,19);
+	}
+
+	
+
+	public Ticket(TYPE type, double amount, APPROVAL approval, String stamp, int employeeID, int ticketID, String tkt_description) {
+		this.type = type;
+		this.amount = amount;
+		this.approval= approval;
+		this.employeeID = employeeID;
+		this.stamp = stamp;
+		this.ticketID = ticketID;
+		this.tkt_description = tkt_description;
 	}
 
 	public String getStamp() {
@@ -103,6 +116,14 @@ public class Ticket {
 
 	public void setTicketID(int ticketID) {
 		this.ticketID = ticketID;
+	}
+
+	public String getTkt_description() {
+		return tkt_description;
+	}
+
+	public void setTkt_description(String tkt_description) {
+		this.tkt_description = tkt_description;
 	}
 
 }
