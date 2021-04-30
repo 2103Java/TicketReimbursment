@@ -9,6 +9,7 @@ import com.revature.dao.TicketDao;
 import com.revature.dao.TicketDaoImpl;
 import com.revature.models.Employee;
 import com.revature.models.Ticket;
+import com.revature.models.Ticket.APPROVAL;
 
 public class TicketService {
 
@@ -37,7 +38,18 @@ public class TicketService {
 
 	public boolean postTicket(Ticket t) {  //	I DONT THINK WE NEED THIS SINCE WE CAN JUST USE PUT FOR ALL OF OUR CREATION AND UPDATING OF TICKETS
 											// + THAT WILL KEEP ALL OF OUR CREATION TO BE IDEMPOTENT 
-		// TODO Auto-generated method stub
+		Ticket tkt = tDao.retrieveTicketByID(t.getTicketID(), conn);
+		
+		if(t.getApproval() == APPROVAL.APPROVED) {
+		tDao.approveTicket(tkt, conn);
+		return true;
+		}
+		if(t.getApproval() == APPROVAL.REJECTED) {
+			tDao.rejectTicket(tkt, conn);
+			return true;
+		}
+		
+		
 		
 		return false;
 	}
