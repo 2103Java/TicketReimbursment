@@ -24,10 +24,13 @@ public class TicketService {
 	public List<Ticket> getTicket(int employeeID) { //NOT SUPER SURE WHAT THE POINT OF THIS LAYER IS, AT THIS POINT WE ALREADY HAVE A TICKET OBJECT
 									  //initially wanted this layer so we could verify server and DB access were working separately but we can put them together if you want
 		
-		// TODO Auto-generated method stub
+		
 		
 		List<Ticket> t = new ArrayList<Ticket>();
-		t = tDao.retrieveTicketByEmployee(employeeID, conn);
+		
+		if(employeeID == -1) t = tDao.retrieveAllTickets(conn);
+		
+		else t = tDao.retrieveTicketByEmployee(employeeID, conn);
 		
 		return t;
 	}
