@@ -14,6 +14,144 @@
 
 
 <title>Document</title>
+<style>
+body {
+	background-image: url('https://wallpapercave.com/wp/wp4472236.jpg');
+	background-repeat: repeat-n;
+}
+
+.hidden {
+	display: block;
+	transform: scale(0);
+}
+
+h1 {
+	font-family: courier new;
+	text-align: center;
+	position: relative;
+	color: #7CFC00;
+	top: 50px;
+}
+
+body {
+	text-align: center;
+	position: relative;
+	top: 70px;
+}
+
+#loginButton {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#TicketType {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#submitButton {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#ViewPreviousTickets {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#SubmitNewTicket {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#logout {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#Back {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#ViewAllTickets {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#ViewPendingTickets {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#ViewApprovedTickets {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#ViewRejectedTickets {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#updateButton {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+
+#ticketapproval {
+	font-family: courier new;
+	color: #7CFC00;
+	background: black;
+}
+td{
+border:1px solid #999;
+}
+
+#loginForm {
+	font-family: courier new;
+	position: absolute;
+	top: 180px;
+	left: 45%;
+	color: #7CFC00;
+}
+
+#submitTicketForm {
+	font-family: courier new;
+	position: absolute;
+	top: 50px;
+	left: 45%;
+	color: #7CFC00;
+}
+
+#displayTicketTable {
+	font-family: courier new;
+	position: absolute;
+	top: 50px;
+	left: 200px;
+	color: #7CFC00;
+	width: 80%;
+}
+
+#Choices {
+	font-family: courier new;
+	position: absolute;
+	top: 100px;
+	left: 45%;
+}
+</style>
 </head>
 <body>
 
@@ -36,7 +174,7 @@
 			<input type="password" class="form-control" id="passwordLogin">
 		</div>
 
-		<button type="button" class="btn btn-primary"
+		<button type="button" id="loginButton"
 			onclick="login(document.getElementById('loginForm'))">Login</button>
 	</form>
 
@@ -53,15 +191,15 @@
 				<option value="TRAVEL">TRAVEL</option>
 				<option value="FOOD" selected>FOOD</option>
 				<option value="OTHER">OTHER</option>
-			</select> <br> 
-			<label for="amount">Amount to be reimbursed:</label> 
-			<input type="number" id="amount" name="amount" min="1" max="10000">
+			</select> <br> <label for="amount">Amount to be reimbursed:</label> <input
+				type="number" id="amount" name="amount" min="1" max="10000">
 			<br>
 			<div class="mb-3">
-			<label for="tkt_description" class="form-label">Reimbursement Description</label><br> <br>
-			<input type="text" class="form-control" id="tkt_description">
+				<label for="tkt_description" class="form-label">Reimbursement
+					Description</label><br> <br> <input type="text"
+					class="form-control" id="tkt_description">
 			</div>
-		 <br> <br>
+			<br> <br>
 
 
 		</form>
@@ -92,40 +230,40 @@
 				<td id="tapproved"></td>
 				<td id="tdate"></td>
 				<td id="ticketID"></td>
-				<td id="currIndex" style="display:none">0</td>
-				<td id="currLength" style="display:none">0</td>
-				
 			</tr>
-			<tr>
-
-			</tr>
+			
 		</table>
-		
-		
+
+
 		<form id="ticketApprovalForm">
-		<div class="mb-3">
-			<label for="ticketidnumber" class="form-label">Ticket#</label> <input
-				type="id" class="form-control" id="ticketidnumber"
-				aria-describedby="emailHelp">
-		</div>
+			<div class="mb-3">
+				<label for="ticketidnumber" class="form-label">Ticket#</label> <input
+					type="id" class="form-control" id="ticketidnumber"
+					aria-describedby="emailHelp">
+			</div>
 
-		<div class="mb-3">
-			<label for="ticketapproval">Ticket Approval</label> <select id="ticketapproval"
-				name="ticketapproval">
-				<option value="APPROVED">APPROVED</option>
-				<option value="REJECTED">REJECTED</option>
-			</select> <br> 
-			<button type="button" class="btn btn-primary" onclick="updateTicket(document.getElementById('ticketApprovalForm'))">UPDATE</button>
-		</div>
+			<div class="mb-3">
+				<label for="ticketapproval">Set Ticket Status:</label> <select
+					id="ticketapproval" name="ticketapproval">
+					<option value="APPROVED">APPROVED</option>
+					<option value="REJECTED">REJECTED</option>
+				</select> <br>
+				<button type="button" id="updateButton"
+					onclick="updateTicket(document.getElementById('ticketApprovalForm'))">Process</button>
+			</div>
 
-		
-	</form>
-	<br><br><br><br><br>
-	
+
+		</form>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
 		<div>
-		<button id="Back" onclick="Back()">Back</button>
+			<button id="Back" onclick="Back()">Back</button>
 		</div>
-		
+
 
 	</div>
 
@@ -137,28 +275,41 @@
 
 		<div>
 			<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
-				Previous Tickets</button>
+				Your Tickets</button>
 		</div>
+		<br>
 		<div>
-			<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit <!-- DONE -->
-				New Ticket</button> 
+			<button id="SubmitNewTicket" onclick="submitNewTicket()">
+				Submit
+				<!-- DONE -->
+				New Ticket
+			</button>
 		</div>
-		
+		<br>
 		<div>
-			<button id="logout" onclick="Logout(document.getElementById('loginForm'))">Logout</button>
+			<button id="ViewAllTickets" onclick="viewAllTickets()">View
+				All Tickets</button>
+
 		</div>
+		<br>
 		<div>
-			<button id="ViewAllTickets" onclick="viewAllTickets()">View All Tickets</button>
-			
+			<button id="ViewPendingTickets" onclick="viewPendingTickets()">View
+				Pending Tickets</button>
 		</div>
+		<br>
 		<div>
-			<button id="ViewPendingTickets" onclick="viewPendingTickets()">View Pending Tickets</button>
+			<button id="ViewApprovedTickets" onclick="viewApprovedTickets()">View
+				Approved Tickets</button>
 		</div>
+		<br>
 		<div>
-			<button id="ViewApprovedTickets" onclick="viewApprovedTickets()">View Approved Tickets</button>
+			<button id="ViewRejectedTickets" onclick="viewRejectedTickets()">View
+				Rejected Tickets</button>
 		</div>
+		<br>
 		<div>
-			<button id="ViewRejectedTickets" onclick="viewRejectedTickets()">View Rejected Tickets</button>
+			<button id="logout"
+				onclick="Logout(document.getElementById('loginForm'))">Logout</button>
 		</div>
 	</div>
 
@@ -169,344 +320,365 @@
 
 
 	<script type="text/javascript">
+		let user = null;
 
-    let user = null;
+		//LOGIN FUNCTION
+		function login(form) {
 
+			console.log("Inside Login");
+			var xhr = new XMLHttpRequest();
 
-    //LOGIN FUNCTION
-    function login(form) 
-        {
-    		
-            console.log("Inside Login");
-            var xhr = new XMLHttpRequest();
-            
-            xhr.onreadystatechange = function () {
-            	
-                if (xhr.readyState === 4) {
-                    console.log(xhr.responseText);
+			xhr.onreadystatechange = function() {
 
-                    console.log(this.getAllResponseHeaders());
-                    if(xhr.status == 404){
-                        alert('Login Failed!');
-                        console.log('Login Failed!');
-                    }
-                    else{
-                        alert("Login Successful!");
-                        console.log("Login Successful!");
-                        document.getElementById('loginHeader').classList.toggle('hidden');
-                        
-                        user = JSON.parse(xhr.responseText);
-                        console.log(user.employeeID);
-                        CheckWhichButtons();
-                    }
-                }
-            }
-            
-            
-            var loginParams ={
-            		"username":form.usernameLogin.value,
-            		"pass":form.passwordLogin.value
-            }
-    
-            
-            
+				if (xhr.readyState === 4) {
+					console.log(xhr.responseText);
+
+					console.log(this.getAllResponseHeaders());
+					if (xhr.status == 404) {
+						alert('Login Failed!');
+						console.log('Login Failed!');
+					} else {
+						alert("Login Successful!");
+						console.log("Login Successful!");
+						document.getElementById('loginHeader').classList
+								.toggle('hidden');
+
+						user = JSON.parse(xhr.responseText);
+						console.log(user.employeeID);
+						CheckWhichButtons();
+					}
+				}
+			}
+
+			var loginParams = {
+				"username" : form.usernameLogin.value,
+				"pass" : form.passwordLogin.value
+			}
+
 			//I think for login we should go with synchronous request to await a response from the DB
-            xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Employee', true);
-            xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(loginParams));           
-        }
-    
-    
-    //  DEFAULT FUNCTION FOR CHECKING BUTTONS ON AND OFF
-    function CheckWhichButtons(){
-        console.log(user);
-        if(user != null)
-        {
-        	document.getElementById("loginForm").classList.toggle('hidden');
-            document.getElementById("Choices").classList.toggle('hidden');
-            
-            if(user.employment == "EMPLOYEE")
-            {
-            	document.getElementById("ViewAllTickets").classList.toggle('hidden');
-            	document.getElementById("ViewPendingTickets").classList.toggle('hidden');
-            	document.getElementById("ViewApprovedTickets").classList.toggle('hidden');
-            	document.getElementById("ViewRejectedTickets").classList.toggle('hidden');
-            	document.getElementById("ticketApprovalForm").classList.toggle('hidden');
-            }     
-        }
-    }
-    
-    
-    
-    //SWITCHS VIEW FROM CHOICES TO SUBMIT TICKET FORM
-    function submitNewTicket(){
-    	document.getElementById("Choices").classList.toggle('hidden');
-    	document.getElementById("submitTicketForm").classList.toggle('hidden');
-    }
-
-    //FUNCTION FOR SUBMITTING NEW TICKET -- NOT COMPLETED
-    function submit() 
-    {
-        console.log("Inside Submit");
-        var xhr = new XMLHttpRequest();
-      
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                alert(xhr.response);
-                document.getElementById("Choices").classList.toggle('hidden');
-            	document.getElementById("submitTicketForm").classList.toggle('hidden');
-            }
-        }
-
-        var type = document.getElementById('TicketType');
-        
-        let ticket ={
-        		"type":type.options[type.selectedIndex].text,
-        		"approval":'PENDING',
-        		"amount":document.getElementById('amount').value,
-        		"employeeID": user.employeeID,
-        		"tkt_description":document.getElementById('tkt_description').value
-        }
-        
-        console.log(JSON.stringify(ticket));
-        
-        xhr.open("PUT", 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
-        xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-        console.log(JSON.stringify(ticket));
-        xhr.send(JSON.stringify(ticket));
-        
-        
-    }
-    
-    
-    //UPDATE TICKET FUNCTION
-    function updateTicket(form){
-    	console.log("Inside Update Ticket");
-    	
-    	var xhr = new XMLHttpRequest();
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                alert(xhr.response);
-                document.getElementById("ticketApprovalForm").classList.toggle('hidden');
-               	Back();
-            }
-        }
-        
-        let ticket ={
-        		"ticketID":form.ticketidnumber.value,
-        		"approval":form.ticketapproval.value
-        }
-        
-        xhr.open("POST", 'http://localhost:9001/P1TicketReimbursement/Ticket', true);
-        xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-        console.log(JSON.stringify(ticket));
-        xhr.send(JSON.stringify(ticket));
-        
-    }
-
-    //LOGOUT FUNCTION 
-    function Logout(form)
-    {
-    	  if(user.employment == "EMPLOYEE")
-          {
-          	document.getElementById("ViewAllTickets").classList.toggle('hidden');
-          	document.getElementById("ViewPendingTickets").classList.toggle('hidden');
-        	document.getElementById("ViewApprovedTickets").classList.toggle('hidden');
-        	document.getElementById("ViewRejectedTickets").classList.toggle('hidden');
-        	document.getElementById("ticketApprovalForm").classList.toggle('hidden');
-          } 
-        user = null;
-        document.getElementById("loginForm").classList.toggle('hidden');
-        document.getElementById("Choices").classList.toggle('hidden');
-        document.getElementById('loginHeader').classList.toggle('hidden');
-        form.usernameLogin.value = '';
-        form.passwordLogin.value = '';
-
-    }
-    
-    //FUNCTION FOR VIEWING ALL TICKETS FROM A USER -- NEEDS TO BE REFACTORED WHEN WE GET USERS STORED AS A JS OBJECT AND SHOULD BE PASSED INTO THIS FUNCTION I THINK
-    function ViewPreviousTickets() 
-    {
-       console.log("Inside ViewPreviousTickets");
-       
-       var xhr = new XMLHttpRequest();
-   	
-       
-       xhr.onreadystatechange = function () {
-           if (xhr.readyState === 4) {
-               let tickets = JSON.parse(xhr.response);
-             
-               for(let i = 0; i < tickets.ticketArr.length; i++){
-               	tempDisplayTickets(tickets.ticketArr[i]);
-               }
-               document.getElementById('displayTicketTable').classList.toggle('hidden');
-               document.getElementById("Choices").classList.toggle('hidden');
-               if(user.category == 'FINANCEADMIN'){
-            	   document.getElementById("ticketApprovalForm").classList.toggle('hidden');
-               }
-           
-           }
-       }
-
-       
-       xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID='+user.employeeID, true);
-       xhr.send();
-
-               //THIS FUNCTION WORKS AND RETURNS A TICKET THEN INSERTS IT INTO A TABLE
-               // IT WILL HAVE TO BE CHANGED WHEN WE GET LOGIN SET UP TO RETURN ALL TICKETS OF A USER INSTEAD OF JUST 1 TICKET AT A TIME
-  
-    }
-    
-    
-    //VIEW ALL TICKETS FCN
-    function viewAllTickets() {
-    	console.log("Inside View All Tickets");
-    	
-    	var xhr = new XMLHttpRequest();
-    	
-    	xhr.onreadystatechange = function(){
-    		 
-    		if (xhr.readyState === 4) {
-                 let tickets = JSON.parse(xhr.response);
-               
-                 for(let i = 0; i < tickets.ticketArr.length; i++){
-                 	tempDisplayTickets(tickets.ticketArr[i]);
-                 }
-                 document.getElementById('displayTicketTable').classList.toggle('hidden');
-                 document.getElementById("Choices").classList.toggle('hidden');
-             
-             }
-    	}
-    	
-    	 xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*', true);
-         xhr.send();
-    }
-    
-    function viewPendingTickets() {
-    	console.log("Inside View Pending Tickets");
-    	
-    	var xhr = new XMLHttpRequest();
-    	
-    	xhr.onreadystatechange = function(){
-    		 
-    		if (xhr.readyState === 4) {
-                 let tickets = JSON.parse(xhr.response);
-               
-                 for(let i = 0; i < tickets.ticketArr.length; i++){
-                	 if(tickets.ticketArr[i].approval == 'PENDING'){
-                 	tempDisplayTickets(tickets.ticketArr[i]);
-                	 }
-                 }
-                 document.getElementById('displayTicketTable').classList.toggle('hidden');
-                 document.getElementById("Choices").classList.toggle('hidden');
-             
-             }
-    	}
-    	
-    	 xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*', true);
-         xhr.send();
-    }
-    
-    function viewApprovedTickets() {
-    	console.log("Inside View Approved Tickets");
-    	
-    	var xhr = new XMLHttpRequest();
-    	
-    	xhr.onreadystatechange = function(){
-    		 
-    		if (xhr.readyState === 4) {
-                 let tickets = JSON.parse(xhr.response);
-               
-                 for(let i = 0; i < tickets.ticketArr.length; i++){
-                	 if(tickets.ticketArr[i].approval == 'APPROVED'){
-                 	tempDisplayTickets(tickets.ticketArr[i]);
-                	 }
-                 }
-                 document.getElementById('displayTicketTable').classList.toggle('hidden');
-                 document.getElementById("Choices").classList.toggle('hidden');
-             
-             }
-    	}
-    	
-    	 xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*', true);
-         xhr.send();
-    }
-    
-    function viewRejectedTickets() {
-    	console.log("Inside View Rejected Tickets");
-    	
-    	var xhr = new XMLHttpRequest();
-    	
-    	xhr.onreadystatechange = function(){
-    		 
-    		if (xhr.readyState === 4) {
-                 let tickets = JSON.parse(xhr.response);
-               
-                 for(let i = 0; i < tickets.ticketArr.length; i++){
-                	 if(tickets.ticketArr[i].approval == 'REJECTED'){
-                 	tempDisplayTickets(tickets.ticketArr[i]);
-                	 }
-                 }
-                 document.getElementById('displayTicketTable').classList.toggle('hidden');
-                 document.getElementById("Choices").classList.toggle('hidden');
-             
-             }
-    	}
-    	
-    	 xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*', true);
-         xhr.send();
-    }
-  
-    function tempDisplayTickets(ticket){
-    	
-    		console.log(ticket);
-    		let table = document.getElementById('TicketTable');
-    	
-    		let row = table.insertRow(-1);
-    		
-    		let cell1 = row.insertCell(0);
-    		cell1.innerHTML = "'" + ticket["tkt_description"] +"'";
-    		
-    		let cell2 = row.insertCell(0);
-    		cell2.innerHTML = "'" + ticket["ticketID"] +"'";
-    		
-    		
-    		let cell3 = row.insertCell(0);
-    		cell3.innerHTML = ticket["stamp"];
-    		
-    		
-    		let cell4 = row.insertCell(0);
-    		cell4.innerHTML = ticket["approval"];
-    		
-    		
-    		let cell5 = row.insertCell(0);
-    		cell5.innerHTML = "'" + ticket["amount"]  +"'";
-    		
-    		
-    		let cell6 = row.insertCell(0);
-    		cell6.innerHTML = ticket["type"];
-    			
-    	
-    }
-    
-    function Back()
-    {
-    	console.log("back button")
-    	let table = document.getElementById('TicketTable');
-    	for(var i = table.rows.length - 1; i > 0; i--)
-		{
-		    table.deleteRow(i);
+			xhr.open("POST",
+					'http://localhost:9001/P1TicketReimbursement/Employee',
+					true);
+			xhr.setRequestHeader("Content-Type",
+					"application/json;charset=UTF-8");
+			xhr.send(JSON.stringify(loginParams));
 		}
-    	
-    	
-    	document.getElementById('displayTicketTable').classList.toggle('hidden');
-        document.getElementById("Choices").classList.toggle('hidden');
-    	
-    }
-    
-   
-</script>
+
+		//  DEFAULT FUNCTION FOR CHECKING BUTTONS ON AND OFF
+		function CheckWhichButtons() {
+			console.log(user);
+			if (user != null) {
+				document.getElementById("loginForm").classList.toggle('hidden');
+				document.getElementById("Choices").classList.toggle('hidden');
+
+				if (user.employment == "EMPLOYEE") {
+					document.getElementById("ViewAllTickets").classList
+							.toggle('hidden');
+					document.getElementById("ViewPendingTickets").classList
+							.toggle('hidden');
+					document.getElementById("ViewApprovedTickets").classList
+							.toggle('hidden');
+					document.getElementById("ViewRejectedTickets").classList
+							.toggle('hidden');
+					document.getElementById("ticketApprovalForm").classList
+							.toggle('hidden');
+				}
+			}
+		}
+
+		//SWITCHS VIEW FROM CHOICES TO SUBMIT TICKET FORM
+		function submitNewTicket() {
+			document.getElementById("Choices").classList.toggle('hidden');
+			document.getElementById("submitTicketForm").classList
+					.toggle('hidden');
+		}
+
+		//FUNCTION FOR SUBMITTING NEW TICKET -- NOT COMPLETED
+		function submit() {
+			console.log("Inside Submit");
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					alert(xhr.response);
+					document.getElementById("Choices").classList
+							.toggle('hidden');
+					document.getElementById("submitTicketForm").classList
+							.toggle('hidden');
+				}
+			}
+
+			var type = document.getElementById('TicketType');
+
+			let ticket = {
+				"type" : type.options[type.selectedIndex].text,
+				"approval" : 'PENDING',
+				"amount" : document.getElementById('amount').value,
+				"employeeID" : user.employeeID,
+				"tkt_description" : document.getElementById('tkt_description').value
+			}
+
+			console.log(JSON.stringify(ticket));
+
+			xhr.open("PUT",
+					'http://localhost:9001/P1TicketReimbursement/Ticket', true);
+			xhr.setRequestHeader("Content-Type",
+					"application/json;charset=UTF-8");
+			console.log(JSON.stringify(ticket));
+			xhr.send(JSON.stringify(ticket));
+
+		}
+
+		//UPDATE TICKET FUNCTION
+		function updateTicket(form) {
+			console.log("Inside Update Ticket");
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					alert(xhr.response);
+					document.getElementById("ticketApprovalForm").classList
+							.toggle('hidden');
+					Back();
+				}
+			}
+
+			let ticket = {
+				"ticketID" : form.ticketidnumber.value,
+				"approval" : form.ticketapproval.value
+			}
+
+			xhr.open("POST",
+					'http://localhost:9001/P1TicketReimbursement/Ticket', true);
+			xhr.setRequestHeader("Content-Type",
+					"application/json;charset=UTF-8");
+			console.log(JSON.stringify(ticket));
+			xhr.send(JSON.stringify(ticket));
+
+		}
+
+		//LOGOUT FUNCTION 
+		function Logout(form) {
+			if (user.employment == "EMPLOYEE") {
+				document.getElementById("ViewAllTickets").classList
+						.toggle('hidden');
+				document.getElementById("ViewPendingTickets").classList
+						.toggle('hidden');
+				document.getElementById("ViewApprovedTickets").classList
+						.toggle('hidden');
+				document.getElementById("ViewRejectedTickets").classList
+						.toggle('hidden');
+				document.getElementById("ticketApprovalForm").classList
+						.toggle('hidden');
+			}
+			user = null;
+			document.getElementById("loginForm").classList.toggle('hidden');
+			document.getElementById("Choices").classList.toggle('hidden');
+			document.getElementById('loginHeader').classList.toggle('hidden');
+			form.usernameLogin.value = '';
+			form.passwordLogin.value = '';
+
+		}
+
+		//FUNCTION FOR VIEWING ALL TICKETS FROM A USER -- NEEDS TO BE REFACTORED WHEN WE GET USERS STORED AS A JS OBJECT AND SHOULD BE PASSED INTO THIS FUNCTION I THINK
+		function ViewPreviousTickets() {
+			console.log("Inside ViewPreviousTickets");
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4) {
+					let tickets = JSON.parse(xhr.response);
+
+					for (let i = 0; i < tickets.ticketArr.length; i++) {
+						tempDisplayTickets(tickets.ticketArr[i]);
+					}
+					document.getElementById('displayTicketTable').classList
+							.toggle('hidden');
+					document.getElementById("Choices").classList
+							.toggle('hidden');
+					if (user.category == 'FINANCEADMIN') {
+						document.getElementById("ticketApprovalForm").classList
+								.toggle('hidden');
+					}
+
+				}
+			}
+
+			xhr.open("GET",
+					'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID='
+							+ user.employeeID, true);
+			xhr.send();
+
+			//THIS FUNCTION WORKS AND RETURNS A TICKET THEN INSERTS IT INTO A TABLE
+			// IT WILL HAVE TO BE CHANGED WHEN WE GET LOGIN SET UP TO RETURN ALL TICKETS OF A USER INSTEAD OF JUST 1 TICKET AT A TIME
+
+		}
+
+		//VIEW ALL TICKETS FCN
+		function viewAllTickets() {
+			console.log("Inside View All Tickets");
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+
+				if (xhr.readyState === 4) {
+					let tickets = JSON.parse(xhr.response);
+
+					for (let i = 0; i < tickets.ticketArr.length; i++) {
+						tempDisplayTickets(tickets.ticketArr[i]);
+					}
+					document.getElementById('displayTicketTable').classList
+							.toggle('hidden');
+					document.getElementById("Choices").classList
+							.toggle('hidden');
+
+				}
+			}
+
+			xhr
+					.open(
+							"GET",
+							'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*',
+							true);
+			xhr.send();
+		}
+
+		function viewPendingTickets() {
+			console.log("Inside View Pending Tickets");
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+
+				if (xhr.readyState === 4) {
+					let tickets = JSON.parse(xhr.response);
+
+					for (let i = 0; i < tickets.ticketArr.length; i++) {
+						if (tickets.ticketArr[i].approval == 'PENDING') {
+							tempDisplayTickets(tickets.ticketArr[i]);
+						}
+					}
+					document.getElementById('displayTicketTable').classList
+							.toggle('hidden');
+					document.getElementById("Choices").classList
+							.toggle('hidden');
+
+				}
+			}
+
+			xhr
+					.open(
+							"GET",
+							'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*',
+							true);
+			xhr.send();
+		}
+
+		function viewApprovedTickets() {
+			console.log("Inside View Approved Tickets");
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+
+				if (xhr.readyState === 4) {
+					let tickets = JSON.parse(xhr.response);
+
+					for (let i = 0; i < tickets.ticketArr.length; i++) {
+						if (tickets.ticketArr[i].approval == 'APPROVED') {
+							tempDisplayTickets(tickets.ticketArr[i]);
+						}
+					}
+					document.getElementById('displayTicketTable').classList
+							.toggle('hidden');
+					document.getElementById("Choices").classList
+							.toggle('hidden');
+
+				}
+			}
+
+			xhr
+					.open(
+							"GET",
+							'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*',
+							true);
+			xhr.send();
+		}
+
+		function viewRejectedTickets() {
+			console.log("Inside View Rejected Tickets");
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function() {
+
+				if (xhr.readyState === 4) {
+					let tickets = JSON.parse(xhr.response);
+
+					for (let i = 0; i < tickets.ticketArr.length; i++) {
+						if (tickets.ticketArr[i].approval == 'REJECTED') {
+							tempDisplayTickets(tickets.ticketArr[i]);
+						}
+					}
+					document.getElementById('displayTicketTable').classList
+							.toggle('hidden');
+					document.getElementById("Choices").classList
+							.toggle('hidden');
+
+				}
+			}
+
+			xhr
+					.open(
+							"GET",
+							'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*',
+							true);
+			xhr.send();
+		}
+
+		function tempDisplayTickets(ticket) {
+
+			console.log(ticket);
+			let table = document.getElementById('TicketTable');
+
+			let row = table.insertRow(-1);
+
+			let cell1 = row.insertCell(0);
+			cell1.innerHTML = "'" + ticket["tkt_description"] + "'";
+
+			let cell2 = row.insertCell(0);
+			cell2.innerHTML = "'" + ticket["ticketID"] + "'";
+
+			let cell3 = row.insertCell(0);
+			cell3.innerHTML = ticket["stamp"];
+
+			let cell4 = row.insertCell(0);
+			cell4.innerHTML = ticket["approval"];
+
+			let cell5 = row.insertCell(0);
+			cell5.innerHTML = "'" + ticket["amount"] + "'";
+
+			let cell6 = row.insertCell(0);
+			cell6.innerHTML = ticket["type"];
+
+		}
+
+		function Back() {
+			console.log("back button")
+			let table = document.getElementById('TicketTable');
+			for (var i = table.rows.length - 1; i > 0; i--) {
+				table.deleteRow(i);
+			}
+
+			document.getElementById('displayTicketTable').classList
+					.toggle('hidden');
+			document.getElementById("Choices").classList.toggle('hidden');
+
+		}
+	</script>
 
 </body>
 </html>
