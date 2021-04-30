@@ -76,6 +76,10 @@ public class Ticket {
 	public APPROVAL getApproval() {
 		return approval;
 	}
+	
+	public void setApproval(APPROVAL approval) {
+		this.approval = approval;
+	}
 
 
 
