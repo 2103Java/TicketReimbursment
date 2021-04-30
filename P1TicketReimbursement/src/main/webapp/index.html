@@ -81,11 +81,11 @@
 				<th>Ticket ID</th>
 			</tr>
 			<tr>
-				<td id='ttype'>Jill</td>
-				<td id='tamount'>Smith</td>
-				<td id="tapproved">50</td>
-				<td id="tdate">50</td>
-				<td id="ticketID">50</td>
+				<td id='ttype'></td>
+				<td id='tamount'></td>
+				<td id="tapproved"></td>
+				<td id="tdate"></td>
+				<td id="ticketID"></td>
 				<td id="currIndex" style="display:none">0</td>
 				<td id="currLength" style="display:none">0</td>
 				
@@ -94,7 +94,32 @@
 
 			</tr>
 		</table>
+		
+		
+		<form id="ticketApprovalForm" class="hidden">
+		<div class="mb-3">
+			<label for="exampleInputEmail1" class="form-label">Ticket#</label> <input
+				type="username" class="form-control" id="usernameLogin"
+				aria-describedby="emailHelp">
+		</div>
+
+		<div class="mb-3">
+			<label for="TicketApproval">Ticket Approval</label> <select id="TicketApproval"
+				name="TicketApproval">
+				<option value="LODGING">APPROVED</option>
+				<option value="TRAVEL">REJECTED</option>
+			</select> <br> 
+			<button type="button" class="btn btn-primary"
+			onclick="">UPDATE</button>
+		</div>
+
+		
+	</form>
+	<br><br><br><br><br>
+	
+		<div>
 		<button id="Back" onclick="Back()">Back</button>
+		</div>
 		
 
 	</div>
@@ -115,10 +140,10 @@
 		</div>
 		
 		<div>
-			<button id="logout" onclick="Logout()">Logout</button>
+			<button id="logout" onclick="Logout(document.getElementById('loginForm'))">Logout</button>
 		</div>
 		<div>
-			<button id="ViewAllTickets" onclick="viewAllTickets()">ViewAllTickets</button>
+			<button id="ViewAllTickets" onclick="viewAllTickets()">View All Tickets</button>
 		</div>
 	</div>
 
@@ -234,12 +259,45 @@
     }
 
     //LOGOUT FUNCTION 
-    function Logout()
+    function Logout(form)
     {
+    	  if(user.employment == "EMPLOYEE")
+          {
+          	document.getElementById("ViewAllTickets").classList.toggle('hidden');
+          } 
         user = null;
         document.getElementById("loginForm").classList.toggle('hidden');
         document.getElementById("Choices").classList.toggle('hidden');
+        document.getElementById('loginHeader').classList.toggle('hidden');
+        form.usernameLogin.value = '';
+        form.passwordLogin.value = '';
 
+    }
+    
+    
+    //VIEW ALL TICKETS FCN
+    function viewAllTickets() {
+    	console.log("Inside View All Tickets");
+    	
+    	var xhr = new XMLHttpRequest();
+    	
+    	xhr.onreadystatechange = function(){
+    		 
+    		if (xhr.readyState === 4) {
+                 let tickets = JSON.parse(xhr.response);
+               
+                 for(let i = 0; i < tickets.ticketArr.length; i++){
+                 	tempDisplayTickets(tickets.ticketArr[i]);
+                 }
+                 document.getElementById('displayTicketTable').classList.toggle('hidden');
+                 document.getElementById("Choices").classList.toggle('hidden');
+                 document.getElementById("ticketApprovalForm").classList.toggle('hidden');
+             
+             }
+    	}
+    	
+    	 xhr.open("GET", 'http://localhost:9001/P1TicketReimbursement/Ticket?employeeID=*', true);
+         xhr.send();
     }
 
     //FUNCTION FOR VIEWING ALL TICKETS FROM A USER -- NEEDS TO BE REFACTORED WHEN WE GET USERS STORED AS A JS OBJECT AND SHOULD BE PASSED INTO THIS FUNCTION I THINK
