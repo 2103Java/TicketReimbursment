@@ -26,7 +26,7 @@ public class TicketDaoImpl implements TicketDao {
 			Statement stmnt = conn.createStatement();
 
 			String sql = "INSERT INTO tickets VALUES ('" + t.getType() + "'," + t.getAmount() + ",'" + t.getApproval()+"','"
-					+ t.getStamp()+"',"  + t.getEmployeeID() + ",nextval('tkts_id_seq'))";
+					+ t.getStamp()+"',"  + t.getEmployeeID() + ",nextval('tkts_id_seq'), '"+ t.getTkt_description()+ "')";
 			
 			
 			System.out.println(t.getStamp());
@@ -62,8 +62,9 @@ public class TicketDaoImpl implements TicketDao {
 				String timeStamp = rs.getString("submission_date");
 				int user_id = rs.getInt("user_id");
 				int tkt_id = rs.getInt("ticket_id");
+				String tkt_description = rs.getString("tkt_description");
 				
-				Ticket t = new Ticket(type, amount, approval, timeStamp, user_id, tkt_id);
+				Ticket t = new Ticket(type, amount, approval, timeStamp, user_id, tkt_id, tkt_description);
 				tickets.add(t);
 			}
 
@@ -120,8 +121,9 @@ public class TicketDaoImpl implements TicketDao {
 				String timeStamp = rs.getString("submission_date");
 				int user_id = rs.getInt("user_id");
 				int tkt_id = rs.getInt("ticket_id");
+				String tkt_description = rs.getString("tkt_description");
 				
-				Ticket t = new Ticket(type, amount, approval, timeStamp, user_id, tkt_id);
+				Ticket t = new Ticket(type, amount, approval, timeStamp, user_id, tkt_id, tkt_description);
 				tickets.add(t);
 			}
 
@@ -220,8 +222,11 @@ public class TicketDaoImpl implements TicketDao {
 				String timeStamp = rs.getString("submission_date");
 				int user_id = rs.getInt("user_id");
 				int tkt_id = rs.getInt("ticket_id");
+				String tkt_description = rs.getString("tkt_description");
 				
-				ticket = new Ticket(ty, amount, approval, timeStamp, user_id, tkt_id);
+				 
+				
+				ticket = new Ticket(ty, amount, approval, timeStamp, user_id, tkt_id, tkt_description);
 
 			}
 
