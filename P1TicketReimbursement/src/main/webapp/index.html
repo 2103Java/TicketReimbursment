@@ -22,7 +22,7 @@
 	<!--
     THIS IS THE LOGIN FORM
 -->
-
+<div id="loginDiv" class="container-fluid">
 	<h1 id="loginHeader">Welcome to the Ticket Reimbursement System</h1>
 	<form id="loginForm">
 		<div class="mb-3">
@@ -39,13 +39,14 @@
 		<button type="button" class="btn btn-primary"
 			onclick="login(document.getElementById('loginForm'))">Login</button>
 	</form>
+</div>
 
 
 	<!--
     THIS IS FOR SUBMITTING NEW TICKETS
 -->
 
-	<div id="submitTicketForm" class="hidden">
+	<div id="submitTicketForm" class="hidden container-fluid">
 		<form>
 			<label for="TicketType">Ticket Type</label> <select id="TicketType"
 				name="TicketType">
@@ -65,8 +66,14 @@
 
 
 		</form>
-
-		<button id="submitButton" onclick="submit()">Submit</button>
+		<div>
+			<button id="submitButton" class="btn btn-success mt-4"onclick="submit()">Submit</button>
+		</div>
+		
+		<div>
+			<button id="Back"class="btn btn-primary mt-4" onclick="Back()">Back</button>
+		</div>
+		
 	</div>
 
 
@@ -75,7 +82,7 @@
 	<!--
     THIS IS THE TABLE FOR SHOWING TICKETS FOR A USER
 -->
-	<div id="displayTicketTable" class="hidden">
+	<div id="displayTicketTable" class="hidden container-fluid">
 
 		<table style="width: 100%" id="TicketTable">
 			<tr id="tableHeaders">
@@ -112,10 +119,10 @@
 		<div class="mb-3">
 			<label for="ticketapproval">Ticket Approval</label> <select id="ticketapproval"
 				name="ticketapproval">
-				<option value="APPROVED">APPROVED</option>
-				<option value="REJECTED">REJECTED</option>
+				<option class="success" value="APPROVED">APPROVED</option>
+				<option class="danger"value="REJECTED">REJECTED</option>
 			</select> <br> 
-			<button type="button" class="btn btn-primary" onclick="updateTicket(document.getElementById('ticketApprovalForm'))">UPDATE</button>
+			<button type="button" class="btn btn-primary mt-2" onclick="updateTicket(document.getElementById('ticketApprovalForm'))">UPDATE</button>
 		</div>
 
 		
@@ -123,7 +130,7 @@
 	<br><br><br><br><br>
 	
 		<div>
-		<button id="Back" onclick="Back()">Back</button>
+		<button id="Back"class="btn btn-primary mt-2" onclick="Back()">Back</button>
 		</div>
 		
 
@@ -132,33 +139,33 @@
 	<!--
     HOME PAGE BUTTONS
 -->
-	<div id="Choices" class="hidden">
+	<div id="Choices" class="hidden container-fluid">
 
 
 		<div>
-			<button id="ViewPreviousTickets" onclick="ViewPreviousTickets()">View
+			<button id="ViewPreviousTickets" class="btn btn-primary mt-2" onclick="ViewPreviousTickets()">View
 				Previous Tickets</button>
 		</div>
 		<div>
-			<button id="SubmitNewTicket" onclick="submitNewTicket()">Submit <!-- DONE -->
+			<button id="SubmitNewTicket"  class="btn btn-primary mt-2" onclick="submitNewTicket()">Submit <!-- DONE -->
 				New Ticket</button> 
 		</div>
 		
 		<div>
-			<button id="logout" onclick="Logout(document.getElementById('loginForm'))">Logout</button>
+			<button id="logout" class="btn btn-primary mt-2" onclick="Logout(document.getElementById('loginForm'))">Logout</button>
 		</div>
 		<div>
-			<button id="ViewAllTickets" onclick="viewAllTickets()">View All Tickets</button>
+			<button id="ViewAllTickets" class="btn btn-primary mt-2" onclick="viewAllTickets()">View All Tickets</button>
 			
 		</div>
 		<div>
-			<button id="ViewPendingTickets" onclick="viewPendingTickets()">View Pending Tickets</button>
+			<button id="ViewPendingTickets" class="btn btn-primary mt-2"onclick="viewPendingTickets()">View Pending Tickets</button>
 		</div>
 		<div>
-			<button id="ViewApprovedTickets" onclick="viewApprovedTickets()">View Approved Tickets</button>
+			<button id="ViewApprovedTickets"class="btn btn-primary mt-2" onclick="viewApprovedTickets()">View Approved Tickets</button>
 		</div>
 		<div>
-			<button id="ViewRejectedTickets" onclick="viewRejectedTickets()">View Rejected Tickets</button>
+			<button id="ViewRejectedTickets"class="btn btn-primary mt-2" onclick="viewRejectedTickets()">View Rejected Tickets</button>
 		</div>
 	</div>
 
@@ -193,7 +200,7 @@
                     else{
                         alert("Login Successful!");
                         console.log("Login Successful!");
-                        document.getElementById('loginHeader').classList.toggle('hidden');
+                        //document.getElementById('loginHeader').classList.toggle('hidden');
                         
                         user = JSON.parse(xhr.responseText);
                         console.log(user.employeeID);
@@ -219,20 +226,71 @@
     
     //  DEFAULT FUNCTION FOR CHECKING BUTTONS ON AND OFF
     function CheckWhichButtons(){
-        console.log(user);
+       console.log(user);
         if(user != null)
         {
-        	document.getElementById("loginForm").classList.toggle('hidden');
-            document.getElementById("Choices").classList.toggle('hidden');
+        	if(!document.getElementById("loginDiv").classList.contains('hidden'))
+            {
+                document.getElementById("loginDiv").classList.toggle('hidden');
+				
+            }
+           
+            if(document.getElementById("Choices").classList.contains('hidden'))
+            {
+                document.getElementById("Choices").classList.toggle('hidden');
+				
+            }
+			if(!document.getElementById("submitTicketForm").classList.contains('hidden'))
+            {
+                document.getElementById("submitTicketForm").classList.toggle('hidden');
+				
+            }
+			if(!document.getElementById("displayTicketTable").classList.contains('hidden'))
+            {
+                document.getElementById("displayTicketTable").classList.toggle('hidden');
+            }
             
             if(user.employment == "EMPLOYEE")
             {
-            	document.getElementById("ViewAllTickets").classList.toggle('hidden');
-            	document.getElementById("ViewPendingTickets").classList.toggle('hidden');
-            	document.getElementById("ViewApprovedTickets").classList.toggle('hidden');
-            	document.getElementById("ViewRejectedTickets").classList.toggle('hidden');
-            	document.getElementById("ticketApprovalForm").classList.toggle('hidden');
+				if(!document.getElementById("ViewAllTickets").classList.contains('hidden'))
+				{
+					document.getElementById("ViewAllTickets").classList.toggle('hidden');
+				}
+            	
+				if(!document.getElementById("ViewPendingTickets").classList.contains('hidden'))
+				{
+					document.getElementById("ViewPendingTickets").classList.toggle('hidden');
+				}
+            	
+				if(!document.getElementById("ViewApprovedTickets").classList.contains('hidden'))
+				{
+					document.getElementById("ViewApprovedTickets").classList.toggle('hidden');
+				}
+            	
+				if(!document.getElementById("ViewRejectedTickets").classList.contains('hidden'))
+				{
+					document.getElementById("ViewRejectedTickets").classList.toggle('hidden');
+				}
+            	
+				if(!document.getElementById("ticketApprovalForm").classList.contains('hidden'))
+				{
+					document.getElementById("ticketApprovalForm").classList.toggle('hidden');
+				}
+            	
             }     
+        }
+        else{
+            if(document.getElementById("loginDiv").classList.contains('hidden'))
+            {
+                document.getElementById("loginDiv").classList.toggle('hidden');
+			
+            }
+           
+            if(!document.getElementById("Choices").classList.contains('hidden'))
+            {
+                document.getElementById("Choices").classList.toggle('hidden');
+			
+            }
         }
     }
     
@@ -317,9 +375,10 @@
         	document.getElementById("ticketApprovalForm").classList.toggle('hidden');
           } 
         user = null;
-        document.getElementById("loginForm").classList.toggle('hidden');
-        document.getElementById("Choices").classList.toggle('hidden');
-        document.getElementById('loginHeader').classList.toggle('hidden');
+        //document.getElementById("loginForm").classList.toggle('hidden');
+        //document.getElementById("Choices").classList.toggle('hidden');
+        //document.getElementById('loginHeader').classList.toggle('hidden');
+		CheckWhichButtons();
         form.usernameLogin.value = '';
         form.passwordLogin.value = '';
 
@@ -499,9 +558,9 @@
 		    table.deleteRow(i);
 		}
     	
-    	
-    	document.getElementById('displayTicketTable').classList.toggle('hidden');
-        document.getElementById("Choices").classList.toggle('hidden');
+    	CheckWhichButtons();
+    	//document.getElementById('displayTicketTable').classList.toggle('hidden');
+        //document.getElementById("Choices").classList.toggle('hidden');
     	
     }
     
