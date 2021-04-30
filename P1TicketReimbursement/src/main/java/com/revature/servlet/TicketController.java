@@ -92,25 +92,40 @@ public class TicketController {
 	
 	
 	public void postTicket(HttpServletRequest req, HttpServletResponse resp) {
-		// TODO Auto-generated method stub
+		System.out.println("inside POST TicketController");
+		ObjectMapper om = new ObjectMapper();
+
+		resp.setContentType("json/application");
+
 		
 		Ticket t = null;
-				
 		
-		resp.setContentType("json/application"); // SETTING THE RESPONSE OBJECT TO JSON
-		
-//		Ticket t = Integer.parseInt(req.getParameter("ticketID")); 
-//		t = tService.postTicket(t); 
-			
-		//NEED TO FIND  A WAY TO INSERT A TICKET FROM HERE  AND PASS THE NEW TICKET INTO TSERVICE
-		
-		ObjectMapper om = new ObjectMapper();
-		resp.setStatus(200);
 		try {
-			resp.getWriter().write(om.writeValueAsString(t)); // TURNING OUT TICKET (T) INTO A JSON OBJECT
+			BufferedReader br = req.getReader();
+			String json = br.readLine();
+			
+			Ticket tmp = om.readValue(json,Ticket.class);
+			t = tmp;
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		
+		if(t == null) {
+			resp.setStatus(404);
+			return;
+		}
+		
+		tService.postTicket(t);
+		
+		resp.setStatus(200);
+		try {
+			resp.getWriter().write(om.writeValueAsString(t));
+			
+		} catch (IOException E) {
+			E.printStackTrace();
 		}
 		
 	}
