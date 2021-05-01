@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.revature.servlet.MasterServlet;
+
 public class Connector {
 
 	
@@ -21,8 +23,8 @@ public class Connector {
 			try {
 				Class.forName("org.postgresql.Driver");
 				Connection conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+				MasterServlet.loggy.info("server is up");
 				
-				System.out.println(conn);
 				return conn;
 			} catch (SQLException | ReflectiveOperationException e) {
 				// TODO Auto-generated catch block

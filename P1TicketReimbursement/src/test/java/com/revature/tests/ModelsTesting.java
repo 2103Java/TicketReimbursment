@@ -10,6 +10,7 @@ import com.revature.models.*;
 import com.revature.models.Employee.CATEGORY;
 import com.revature.models.Ticket.APPROVAL;
 import com.revature.models.Ticket.TYPE;
+import com.revature.servlet.MasterServlet;
 
 
 public class ModelsTesting {
@@ -20,7 +21,7 @@ public class ModelsTesting {
 		
 		if(t1.getType() == null) fail("failed to properly initialize a ticket object");
 		
-		System.out.println(t1.getStamp());
+		MasterServlet.loggy.info(t1.getStamp());
 		
 		assertEquals(10101, t1.getTicketID());
 		assertEquals(1, t1.getEmployeeID());
@@ -38,8 +39,7 @@ public class ModelsTesting {
 			e.printStackTrace();
 		}
 		Ticket t2 = new Ticket(TYPE.TRAVEL, 300.00, APPROVAL.PENDING, 1, 10101);
-		System.out.println(t1.getStamp());
-		System.out.println(t2.getStamp());
+		
 		
 		assertTrue(t1.getStamp().compareTo(t2.getStamp()) != 0);
 		assertTrue(t1.getStamp().length() == 19 && t2.getStamp().length() == 19);

@@ -33,31 +33,32 @@ public class RequestHelper  {
 		
 		case"/P1TicketReimbursement/Ticket"://END POINT IS TICKET - LOOKING FOR A SPECIFIC TICKET IN THIS INSTANCE
 			
-			System.out.println("inside ticket");
+			//System.out.println("inside ticket");
 			switch(method)
 			{
 				case "GET": 
-					System.out.println("Entering GET in ticket Controller");
+					//System.out.println("Entering GET in ticket Controller");
 				tcon.getTicket(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING TICKET INFORMATION
 				break;
 				case "POST": 
-					System.out.println("Entering POST in ticket Controller");
+					//System.out.println("Entering POST in ticket Controller");
 					tcon.postTicket(req,resp);
 					break;
 				
 				case "PUT": 
-					System.out.println("Entering PUT in ticket Controller");
+					//System.out.println("Entering PUT in ticket Controller");
 					tcon.putTicket(req,resp);
 					break;
 				
 				case "DELETE": 
-					System.out.println("Entering DELETE in ticket Controller");
+					//System.out.println("Entering DELETE in ticket Controller");
 					tcon.deleteTicket(req,resp);
 					break;
 				
 					
 				default:
-					System.out.print("Went to default -- this is a terrible sign");
+					
+					MasterServlet.loggy.info("Went to default -- this is a terrible sign");
 					break;	
 			}
 			break;
@@ -70,7 +71,7 @@ public class RequestHelper  {
 				econ.getEmployee(req,resp); // EVERYTHING PASSED THIS POINT IS BASED ON GETTING EMPLOYEE INFORMATION
 				break;
 				case "POST": 
-					System.out.println("Going inside employee post from helper");
+					MasterServlet.loggy.info("Going inside employee post from helper");
 					econ.postEmployee(req,resp);
 					break;
 				

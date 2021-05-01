@@ -27,7 +27,7 @@ public class TicketController {
 	}
 
 	public void getTicket(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("inside GET TicketController");
+		MasterServlet.loggy.info("inside GET TicketController");
 		ObjectMapper om = new ObjectMapper();
 
 		resp.setContentType("json/application");
@@ -92,7 +92,7 @@ public class TicketController {
 	
 	
 	public void postTicket(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("inside POST TicketController");
+		MasterServlet.loggy.info("inside POST TicketController");
 		ObjectMapper om = new ObjectMapper();
 
 		resp.setContentType("json/application");
@@ -132,7 +132,7 @@ public class TicketController {
 
 	public void putTicket(HttpServletRequest req, HttpServletResponse resp) {
 
-		System.out.println("inside PUT TicketController");
+		MasterServlet.loggy.info("inside PUT TicketController");
 		ObjectMapper om = new ObjectMapper();
 
 		resp.setContentType("json/application");
@@ -147,8 +147,8 @@ public class TicketController {
 			
 			Ticket tmp = om.readValue(json,Ticket.class);
 			
-			System.out.println(t);
-			System.out.println(json);
+			MasterServlet.loggy.info(t);
+			
 			t = tmp;
 			
 		} catch (IOException e) {

@@ -13,6 +13,7 @@ import com.revature.models.Employee;
 import com.revature.models.Ticket;
 import com.revature.models.Ticket.APPROVAL;
 import com.revature.models.Ticket.TYPE;
+import com.revature.servlet.MasterServlet;
 
 
 public class TicketDaoImpl implements TicketDao {
@@ -29,8 +30,7 @@ public class TicketDaoImpl implements TicketDao {
 					+ t.getStamp()+"',"  + t.getEmployeeID() + ",nextval('tkts_id_seq'), '"+ t.getTkt_description()+ "')";
 			
 			
-			System.out.println(t.getStamp());
-			System.out.println(sql);
+			MasterServlet.loggy.info(sql);
 			stmnt.executeUpdate(sql);
 
 			
@@ -230,12 +230,13 @@ public class TicketDaoImpl implements TicketDao {
 
 			}
 
-			// System.out.println(user);
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("TicketFailed");
+			MasterServlet.loggy.warn("TicketFailed");
+			
 
 		}
 
@@ -269,7 +270,8 @@ public class TicketDaoImpl implements TicketDao {
 			ps.setString(3, temp2.toString());
 			ps.setInt(4, t.getTicketID());
 			
-			System.out.println(ps);
+			//System.out.println(ps);
+			MasterServlet.loggy.info(ps);
 			
 			ps.execute();
 			
@@ -280,7 +282,7 @@ public class TicketDaoImpl implements TicketDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("UpdateTicketFailed");
+			MasterServlet.loggy.warn("UpdateTicketFailed");
 			
 		}
 	}
