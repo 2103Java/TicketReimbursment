@@ -44,7 +44,7 @@ public class EmployeeController {
 	// authentication at it is more secure for the user than a GET
 	public void postEmployee(HttpServletRequest req, HttpServletResponse resp) {
 		
-		System.out.println("inside post employee for login");
+		MasterServlet.loggy.info("inside post employee for login");
 		ObjectMapper om = new ObjectMapper();
 
 		resp.setContentType("json/application");

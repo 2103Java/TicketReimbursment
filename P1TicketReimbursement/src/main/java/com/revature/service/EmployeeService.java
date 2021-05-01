@@ -7,6 +7,7 @@ import com.revature.dao.EmployeeDaoImpl;
 import com.revature.dao.TicketDaoImpl;
 import com.revature.models.Employee;
 import com.revature.models.Ticket;
+import com.revature.servlet.MasterServlet;
 
 public class EmployeeService {
 	private EmployeeDaoImpl eDao;
@@ -61,11 +62,11 @@ public class EmployeeService {
 		System.out.print("INSIDE EMPLOYEE POST");
 		Employee e = eDao.findEmployee(tmp, conn);
 		if(e == null) {
-			System.out.println("EMPLOYEE DNE");
+			MasterServlet.loggy.info("EMPLOYEE DNE");
 			return null;
 		}
 		
-		System.out.println("Employee Found!!");
+		MasterServlet.loggy.info("Employee Found!!");
 		return e;
 	}
 

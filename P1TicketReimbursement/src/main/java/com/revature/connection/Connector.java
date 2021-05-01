@@ -23,7 +23,7 @@ public class Connector {
 			try {
 				Class.forName("org.postgresql.Driver");
 				Connection conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
-				MasterServlet.loggy.info("server is up");
+				//MasterServlet.loggy.info("server is up");
 				
 				return conn;
 			} catch (SQLException | ReflectiveOperationException e) {

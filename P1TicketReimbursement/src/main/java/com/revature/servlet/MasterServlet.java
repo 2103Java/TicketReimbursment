@@ -16,9 +16,10 @@ public class MasterServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = -6352718686718455702L;
+	public final static Logger loggy = Logger.getLogger(MasterServlet.class);
 	public static RequestHelper rh = new RequestHelper();
 	
-	public final static Logger loggy = Logger.getLogger(MasterServlet.class);
+	
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
