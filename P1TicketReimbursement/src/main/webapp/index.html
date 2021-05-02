@@ -313,6 +313,8 @@
                 alert(xhr.response);
                 document.getElementById("Choices").classList.toggle('hidden');
             	document.getElementById("submitTicketForm").classList.toggle('hidden');
+            	document.getElementById('amount').value ='';
+            	document.getElementById('tkt_description').value ='';
             }
         }
 
@@ -348,6 +350,9 @@
                 alert(xhr.response);
                 document.getElementById("ticketApprovalForm").classList.toggle('hidden');
                	Back();
+               	document.getElementById("ticketApprovalForm").classList.toggle('hidden');
+               	form.ticketidnumber.value = '';
+               	form.ticketapproval.value = '';
             }
         }
         
