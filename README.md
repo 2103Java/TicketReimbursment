@@ -1,2 +1,2 @@
-# SwoleTeam6
-Dante Pizzini and Jacob Erdmann's Employee Reimbursement Project
+# Ticket Reimbursement Application
+Lead developers: Dante Pizzini, Jacob Erdman
