@@ -1,10 +1,9 @@
-# Ticket Reimbursement Application
-Lead developers: Dante Pizzini, Jacob Erdman
-
 ## Project Description
 
 An application to handle reimbursement requests of employees!
 A reimbursement system for a company's employees. Employees can request reimbursements and managers can approve or deny those requests.
+
+Lead developers: Dante Pizzini, Jacob Erdman
 
 ## Technologies Used
 
@@ -23,7 +22,7 @@ A reimbursement system for a company's employees. Employees can request reimburs
 List of features ready and TODOs for future development
 * Employee's can submit reimbursement requests
 * Managers can accept or reject requests.
-* Awesome feature 3
+
 * Users can submit reimbursement requests.
 * Users can view the status of previously submitted requests.
 * Administrators can view all past requests from all users.
